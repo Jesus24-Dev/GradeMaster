@@ -45,4 +45,29 @@ public class UsersRepository {
             return null;
         }
     }
+    
+    public Users getUser(Connection conn, String id){
+        String query = "SELECT id, name, lastname, birthday, address, gender, rol, status FROM users WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, id);
+            try(ResultSet resultset = statement.executeQuery()){
+                if(resultset.next()){
+                    return new Users(
+                            resultset.getString("id"),
+                            resultset.getString("name"),
+                            resultset.getString("lastname"),
+                            "",                          
+                            resultset.getDate("birthday"),
+                            resultset.getString("address"),
+                            resultset.getString("gender"),
+                            resultset.getInt("rol"),
+                            resultset.getBoolean("status")
+                    );
+                }
+            }
+        } catch(SQLException e){
+            return null;
+        }
+        return null;
+    }
 }
