@@ -14,7 +14,7 @@ public class Users {
     private int role;
     private boolean status;
 
-    public Users(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role) {
+    public Users(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role, boolean status) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -23,7 +23,7 @@ public class Users {
         this.address = address;
         this.gender = gender;
         this.role = role;
-        this.status = true;
+        this.status = status;
     }
 
     public String getId() {
