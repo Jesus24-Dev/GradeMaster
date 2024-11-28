@@ -71,4 +71,22 @@ public class UsersRepository {
         return null;
     }
     
+    public void addUser(Connection conn, Users user){
+        String query = "INSERT INTO users (id, name, lastname, password, birthday, address, gender, rol, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, user.getId());
+            statement.setString(2, user.getName());
+            statement.setString(3, user.getLastname());
+            statement.setString(4, user.getPassword());
+            statement.setDate(5, user.getBirthday());
+            statement.setString(6, user.getAddress());
+            statement.setString(7, user.getGender());
+            statement.setInt(8, user.getRole());
+            statement.setBoolean(9, true);
+            
+            statement.executeUpdate();
+        } catch(SQLException e){
+            throw new RuntimeException("");
+        }
+    }
 }
