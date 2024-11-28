@@ -18,12 +18,12 @@ import java.util.List;
  */
 public class UsersRepository {
     
-    public ArrayList<Users> getUsers(Connection conn, int role){
+    public ArrayList<Users> getUsers(Connection conn, int role, boolean status){
         String query = "SELECT id, name, lastname, birthday, address, gender, rol, status FROM users WHERE rol = ? AND status = ?";
         ArrayList<Users> users = new ArrayList<>();
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setInt(1, role);
-            statement.setBoolean(2, true);
+            statement.setBoolean(2, status);
             try(ResultSet resultset = statement.executeQuery()){
                 while(resultset.next()){
                     Users user = new Users(
@@ -70,4 +70,5 @@ public class UsersRepository {
         }
         return null;
     }
+    
 }
