@@ -42,4 +42,14 @@ public class SubjectsRepository {
             throw new RuntimeException("");
         }
     }
+    
+    public void deleteSubject(Connection conn, String name){
+        String sql = "DELETE FROM subject WHERE namesubject = ?";
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){
+            pstm.setString(1, name);
+            pstm.executeUpdate();
+        } catch(SQLException e){
+            throw new RuntimeException("");
+        }
+    }
 }
