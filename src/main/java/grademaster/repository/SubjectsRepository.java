@@ -2,6 +2,7 @@ package grademaster.repository;
 
 import grademaster.models.Subjects;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public class SubjectsRepository {
     public ArrayList<Subjects> getSubjects(Connection conn){
-        String sql = "SELECT namesubject FROM SUBJECT";
+        String sql = "SELECT namesubject FROM subject";
         ArrayList<Subjects> subjects = new ArrayList<>();
         try(Statement stmt = conn.createStatement()){
             ResultSet rs = stmt.executeQuery(sql);
@@ -30,5 +31,15 @@ public class SubjectsRepository {
         } catch (SQLException e){
             return null;
         }    
+    }
+    
+    public void createSubject(Connection conn, Subjects subject){
+        String sql = "INSERT INTO subject (namesubject) VALUES (?)";
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){
+            pstm.setString(1, subject.getName());
+            pstm.executeUpdate();
+        } catch(SQLException e){
+            throw new RuntimeException("");
+        }
     }
 }
