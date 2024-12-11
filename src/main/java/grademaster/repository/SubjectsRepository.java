@@ -39,7 +39,7 @@ public class SubjectsRepository {
             pstm.setString(1, subject.getName());
             pstm.executeUpdate();
         } catch(SQLException e){
-            throw new RuntimeException("");
+            throw new RuntimeException(e);
         }
     }
     
@@ -49,7 +49,7 @@ public class SubjectsRepository {
             pstm.setString(1, name);
             pstm.executeUpdate();
         } catch(SQLException e){
-            throw new RuntimeException("");
+            throw new RuntimeException(e);
         }
     }
 }

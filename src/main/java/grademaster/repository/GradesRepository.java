@@ -137,7 +137,7 @@ public class GradesRepository {
             psmt.setString(7, grade.getSectionStudy().toString());
             psmt.executeUpdate();
         } catch (SQLException e){
-            
+            throw new RuntimeException(e);
         }
     }
 }

@@ -86,7 +86,7 @@ public class UsersRepository {
             
             statement.executeUpdate();
         } catch(SQLException e){
-            throw new RuntimeException("");
+            throw new RuntimeException(e);
         }
     }
     
@@ -106,7 +106,7 @@ public class UsersRepository {
             
             statement.executeUpdate();
         } catch (SQLException e){
-            throw new RuntimeException("");
+            throw new RuntimeException(e);
          }
     }
     
@@ -116,7 +116,7 @@ public class UsersRepository {
             statement.setString(1, id);
             statement.executeUpdate();
         } catch(SQLException e){
-            throw new RuntimeException("");
+            throw new RuntimeException(e);
         }
     }
 }
