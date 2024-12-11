@@ -140,4 +140,20 @@ public class GradesRepository {
             throw new RuntimeException(e);
         }
     }
+    
+    public void updateGrades(Connection conn, Grades grade, String subject){
+        String sql = "UPDATE grades SET grade = ? "
+                + "WHERE studentid = ? AND subjectid = (SELECT id FROM subject WHERE namesubject = ?) AND yearstudy = ? AND activity = ? AND periodtest = ?";
+        try (PreparedStatement psmt = conn.prepareStatement(sql)){
+            psmt.setFloat(1, grade.getGrade());
+            psmt.setString(2, grade.getStudentId());
+            psmt.setString(3, subject);
+            psmt.setString(4, grade.getYearStudy().toString());
+            psmt.setString(5, grade.getActivity().toString());
+            psmt.setString(6, grade.getPeriod().toString());
+            psmt.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
