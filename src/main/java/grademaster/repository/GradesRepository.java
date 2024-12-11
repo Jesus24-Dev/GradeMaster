@@ -156,4 +156,18 @@ public class GradesRepository {
             throw new RuntimeException(e);
         }
     }
+    
+    public void deleteGrades(Connection conn, Grades grade, String subject){
+        String sql = "DELETE FROM grades WHERE studentid = ? AND subjectid = (SELECT id FROM subject WHERE namesubject = ?) AND yearstudy = ? AND activity = ? AND periodtest = ?";
+        try (PreparedStatement psmt = conn.prepareStatement(sql)){
+            psmt.setString(1, grade.getStudentId());
+            psmt.setString(2, subject);
+            psmt.setString(3, grade.getYearStudy().toString());
+            psmt.setString(4, grade.getActivity().toString());
+            psmt.setString(5, grade.getPeriod().toString());
+            psmt.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
