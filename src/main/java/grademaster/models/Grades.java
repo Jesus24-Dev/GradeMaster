@@ -14,7 +14,6 @@ public class Grades {
     private String studentId;
     private String nameStudent;
     private String lastnameStudent;
-    private int subjectId; 
     private String nameSubject;
     private YearStudy yearStudy;
     private Test activity;
@@ -22,9 +21,8 @@ public class Grades {
     private SectionStudy sectionStudy;
     private float grade;
 
-    public Grades(String studentId, int subjectId, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float grade) {
+    public Grades(String studentId, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float grade) {
         this.studentId = studentId;
-        this.subjectId = subjectId;
         this.yearStudy = yearStudy;
         this.activity = activity;
         this.period = period;
@@ -50,14 +48,6 @@ public class Grades {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
-    }
-
-    public int getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(int subjectId) {
-        this.subjectId = subjectId;
     }
 
     public YearStudy getYearStudy() {
