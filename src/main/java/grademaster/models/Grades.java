@@ -11,8 +11,11 @@ import grademaster.utils.StudyEnums.*;
  * @author Jesus24-Dev
  */
 public class Grades {
-    private String studentId ;
+    private String studentId;
+    private String nameStudent;
+    private String lastnameStudent;
     private int subjectId; 
+    private String nameSubject;
     private YearStudy yearStudy;
     private Test activity;
     private Period period;
@@ -29,6 +32,18 @@ public class Grades {
         this.grade = grade;
     }
 
+    public Grades(String studentId, String nameStudent, String lastnameStudent, String nameSubject, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float grade) {
+        this.studentId = studentId;
+        this.nameStudent = nameStudent;
+        this.lastnameStudent = lastnameStudent;
+        this.nameSubject = nameSubject;
+        this.yearStudy = yearStudy;
+        this.activity = activity;
+        this.period = period;
+        this.sectionStudy = sectionStudy;
+        this.grade = grade;
+    }
+    
     public String getStudentId() {
         return studentId;
     }
