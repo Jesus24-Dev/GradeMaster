@@ -48,4 +48,16 @@ public class YearListRepository {
             return null;
         }      
     }
+    
+    public void addStudentToList(Connection conn, YearList student){
+        String sql = "INSERT INTO yearlist (studentid, yearstudy, section) VALUES (?, ?, ?)";
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){
+            pstm.setString(1, student.getStudentId());
+            pstm.setString(2, student.getYearStudy().toString());
+            pstm.setString(3, student.getSection().toString());
+            pstm.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
