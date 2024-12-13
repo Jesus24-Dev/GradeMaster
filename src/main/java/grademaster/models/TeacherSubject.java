@@ -10,18 +10,18 @@ package grademaster.models;
  */
 public class TeacherSubject {
     private String teacherId;
-    private int subjectId;
+    private String nameSubject;
     private String teacherName;
     private String teacherLastname;
 
-    public TeacherSubject(String teacherId, int subjectId) {
+    public TeacherSubject(String teacherId, String nameSubject) {
         this.teacherId = teacherId;
-        this.subjectId = subjectId;
+        this.nameSubject = nameSubject;
     }
 
-    public TeacherSubject(String teacherId, int subjectId, String teacherName, String teacherLastname) {
+    public TeacherSubject(String teacherId, String nameSubject, String teacherName, String teacherLastname) {
         this.teacherId = teacherId;
-        this.subjectId = subjectId;
+        this.nameSubject = nameSubject;
         this.teacherName = teacherName;
         this.teacherLastname = teacherLastname;
     }
@@ -34,12 +34,12 @@ public class TeacherSubject {
         this.teacherId = teacherId;
     }
 
-    public int getSubjectId() {
-        return subjectId;
+    public String getNameSubject() {
+        return nameSubject;
     }
 
-    public void setSubjectId(int subjectId) {
-        this.subjectId = subjectId;
+    public void setNameSubject(String nameSubject) {
+        this.nameSubject = nameSubject;
     }
 
     public String getTeacherName() {
@@ -60,7 +60,7 @@ public class TeacherSubject {
 
     @Override
     public String toString() {
-        return "TeacherSubject{" + "teacherId=" + teacherId + ", subjectId=" + subjectId + ", teacherName=" + teacherName + ", teacherLastname=" + teacherLastname + '}';
+        return "TeacherSubject{" + "teacherId=" + teacherId + ", nameSubject=" + nameSubject + ", teacherName=" + teacherName + ", teacherLastname=" + teacherLastname + '}';
     }
     
     
