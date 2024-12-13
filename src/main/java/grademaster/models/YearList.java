@@ -71,6 +71,10 @@ public class YearList {
     public void setLastnameStudent(String lastnameStudent) {
         this.lastnameStudent = lastnameStudent;
     }
+
+    @Override
+    public String toString() {
+        return "YearList{" + "studentId=" + studentId + ", yearStudy=" + yearStudy + ", section=" + section + ", nameStudent=" + nameStudent + ", lastnameStudent=" + lastnameStudent + '}';
+    }
         
-    
 }
