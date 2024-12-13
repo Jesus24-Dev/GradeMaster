@@ -111,7 +111,7 @@ public class UsersRepository {
     }
     
     public void deleteUser(Connection conn, String id){
-        String sql = "DELETE FROM users WHERE id = ?";
+        String sql = "UPDATE users SET status = false WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(sql)){
             statement.setString(1, id);
             statement.executeUpdate();
