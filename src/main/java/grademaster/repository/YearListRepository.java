@@ -72,4 +72,14 @@ public class YearListRepository {
             throw new RuntimeException(e);
         }
     }
+    
+    public void deleteFromList(Connection conn, String id){
+        String sql = "DELETE FROM yearlist WHERE studentid = ?";
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){     
+            pstm.setString(1, id);
+            pstm.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
