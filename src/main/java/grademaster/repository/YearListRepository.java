@@ -60,4 +60,16 @@ public class YearListRepository {
             throw new RuntimeException(e);
         }
     }
+    
+    public void updateList(Connection conn, YearList student){
+        String sql = "UPDATE yearlist SET yearstudy = ?, section = ? WHERE studentid = ?";
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){     
+            pstm.setString(1, student.getYearStudy().toString());
+            pstm.setString(2, student.getSection().toString());
+            pstm.setString(3, student.getStudentId());
+            pstm.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
