@@ -15,6 +15,8 @@ public class YearList {
     private String studentId;
     private YearStudy yearStudy;
     private SectionStudy section;
+    private String nameStudent;
+    private String lastnameStudent;
 
     public YearList(String studentId, YearStudy yearStudy, SectionStudy section) {
         this.studentId = studentId;
@@ -22,6 +24,14 @@ public class YearList {
         this.section = section;
     }
 
+    public YearList(String studentId, YearStudy yearStudy, SectionStudy section, String nameStudent, String lastnameStudent) {
+        this.studentId = studentId;
+        this.yearStudy = yearStudy;
+        this.section = section;
+        this.nameStudent = nameStudent;
+        this.lastnameStudent = lastnameStudent;
+    }
+    
     public String getStudentId() {
         return studentId;
     }
@@ -45,5 +55,22 @@ public class YearList {
     public void setSection(SectionStudy section) {
         this.section = section;
     }
+
+    public String getNameStudent() {
+        return nameStudent;
+    }
+
+    public void setNameStudent(String nameStudent) {
+        this.nameStudent = nameStudent;
+    }
+
+    public String getLastnameStudent() {
+        return lastnameStudent;
+    }
+
+    public void setLastnameStudent(String lastnameStudent) {
+        this.lastnameStudent = lastnameStudent;
+    }
         
+    
 }
