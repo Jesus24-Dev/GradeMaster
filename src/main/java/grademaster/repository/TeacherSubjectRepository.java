@@ -52,4 +52,28 @@ public class TeacherSubjectRepository {
             throw new RuntimeException(e);
         }
     }
+    
+    public void updateTeacherSubject(Connection conn, TeacherSubject teacherSubject){
+        String sql = "UPDATE teacher_subject SET subjectid = (SELECT id FROM subject WHERE namesubject = ?) WHERE teacherid = ?";              
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){          
+            pstm.setString(1, teacherSubject.getNameSubject());
+            pstm.setString(2, teacherSubject.getTeacherId());
+            
+            pstm.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void deleteTeacherSubject(Connection conn, TeacherSubject teacherSubject){
+        String sql = "DELETE FROM teacher_subject WHERE subjectid = (SELECT id FROM subject WHERE namesubject = ?) AND teacherid = ?";              
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){          
+            pstm.setString(1, teacherSubject.getNameSubject());
+            pstm.setString(2, teacherSubject.getTeacherId());
+            
+            pstm.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
