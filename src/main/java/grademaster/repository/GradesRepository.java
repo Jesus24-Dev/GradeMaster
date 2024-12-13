@@ -47,6 +47,7 @@ public class GradesRepository {
                     grades.add(grade);
                 } while(rs.next());
             }
+            rs.close();
             return grades;
         } catch (SQLException e){
             System.out.println(e);
@@ -82,6 +83,7 @@ public class GradesRepository {
                     grades.add(grade);
                 } while(rs.next());
             }
+            rs.close();
             return grades;
         } catch (SQLException e){
             System.out.println(e);
@@ -117,6 +119,7 @@ public class GradesRepository {
                     grades.add(grade);
                 } while(rs.next());
             }
+            rs.close();   
             return grades;
         } catch (SQLException e){
             System.out.println(e);

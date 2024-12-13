@@ -27,6 +27,7 @@ public class SubjectsRepository {
                     subjects.add(subject);
                 } while (rs.next());
             }
+            rs.close();
             return subjects;
         } catch (SQLException e){
             return null;
