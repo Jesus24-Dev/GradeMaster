@@ -110,10 +110,11 @@ public class UsersRepository {
          }
     }
     
-    public void deleteUser(Connection conn, String id){
-        String sql = "UPDATE users SET status = false WHERE id = ?";
+    public void deleteUser(Connection conn, String id, boolean newStatus){
+        String sql = "UPDATE users SET status = ? WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(sql)){
-            statement.setString(1, id);
+            statement.setBoolean(1, newStatus);
+            statement.setString(2, id);
             statement.executeUpdate();
         } catch(SQLException e){
             throw new RuntimeException(e);
