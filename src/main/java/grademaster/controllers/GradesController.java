@@ -8,7 +8,6 @@ import grademaster.models.Grades;
 import grademaster.service.GradesService;
 import grademaster.utils.StudyEnums.*;
 import java.sql.Connection;
-import java.sql.Date;
 import java.util.ArrayList;
 /**
  *
@@ -23,11 +22,11 @@ public class GradesController {
         this.conn = conn;
     }
     
-    public ArrayList<Grades> getGrades(Connection conn, YearStudy yearStudy, SectionStudy sectionStudy){
+    public ArrayList<Grades> getGrades(YearStudy yearStudy, SectionStudy sectionStudy){
         return gradesService.getGrades(conn, yearStudy, sectionStudy);
     }
     
-    public ArrayList<Grades> getGradesByStudent(Connection conn, String id){
+    public ArrayList<Grades> getGradesByStudent(String id){
         return gradesService.getGradesByStudent(conn, id);
     }
     

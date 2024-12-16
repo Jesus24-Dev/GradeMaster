@@ -23,16 +23,16 @@ public class UsersController {
         this.conn = conn;
     }
     
-    public void createUser(Connection conn, String id, String name, String lastname, String password, Date birthday, String address, String gender, int role){
+    public void createUser(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role){
         Users user = new Users(id, name, lastname, password, birthday, address, gender, role, true);
         usersService.createUser(conn, user);
     }
     
-    public ArrayList<Users> getStudents(Connection conn, boolean status){
+    public ArrayList<Users> getStudents(boolean status){
         return usersService.getUsers(conn, 3, status);
     }
     
-    public ArrayList<Users> getTeachers(Connection conn, boolean status){
+    public ArrayList<Users> getTeachers(boolean status){
         return usersService.getUsers(conn, 2, status);
     }
     
@@ -40,12 +40,12 @@ public class UsersController {
         return usersService.getUser(id);
     }
     
-    public void updateUser(Connection conn, String id, String name, String lastname, String password, Date birthday, String address, String gender, int role, boolean status){
+    public void updateUser(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role, boolean status){
         Users user = new Users(id, name, lastname, password, birthday, address, gender, role, status);
         usersService.updateUser(conn, user, status);
     }
     
-    public void deleteUser(Connection conn, String id, boolean newStatus){
+    public void deleteUser(String id, boolean newStatus){
         usersService.deleteUser(conn, id, newStatus);
     }
 }

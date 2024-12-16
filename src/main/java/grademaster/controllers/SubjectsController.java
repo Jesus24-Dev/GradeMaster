@@ -22,16 +22,16 @@ public class SubjectsController {
         this.conn = conn;
     }
     
-    public ArrayList<Subjects> getSubjects(Connection conn){
+    public ArrayList<Subjects> getSubjects(){
         return subjectsService.getSubjects(conn);
     }
     
-    public void createSubject(Connection conn, String nameSubject){
+    public void createSubject(String nameSubject){
         Subjects subject = new Subjects(nameSubject);
         subjectsService.createSubject(conn, subject);
     }
     
-    public void deleteSubject(Connection conn, String nameSubject){
+    public void deleteSubject(String nameSubject){
         subjectsService.deleteSubject(conn, nameSubject);
     }
 }
