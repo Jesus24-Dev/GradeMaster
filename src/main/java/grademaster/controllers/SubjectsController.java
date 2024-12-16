@@ -6,7 +6,6 @@ package grademaster.controllers;
 
 import grademaster.models.Subjects;
 import grademaster.service.SubjectsService;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -15,23 +14,21 @@ import java.util.ArrayList;
  */
 public class SubjectsController {
     private final SubjectsService subjectsService;
-    private final Connection conn;
     
-    public SubjectsController(SubjectsService subjectsService, Connection conn){
+    public SubjectsController(SubjectsService subjectsService){
         this.subjectsService = subjectsService;
-        this.conn = conn;
     }
     
     public ArrayList<Subjects> getSubjects(){
-        return subjectsService.getSubjects(conn);
+        return subjectsService.getSubjects();
     }
     
     public void createSubject(String nameSubject){
         Subjects subject = new Subjects(nameSubject);
-        subjectsService.createSubject(conn, subject);
+        subjectsService.createSubject(subject);
     }
     
     public void deleteSubject(String nameSubject){
-        subjectsService.deleteSubject(conn, nameSubject);
+        subjectsService.deleteSubject(nameSubject);
     }
 }

@@ -16,24 +16,22 @@ import java.util.ArrayList;
  */
 public class UsersController {
     private final UsersService usersService;
-    private final Connection conn;
     
-    public UsersController(UsersService usersService, Connection conn){
+    public UsersController(UsersService usersService){
         this.usersService = usersService;
-        this.conn = conn;
     }
     
     public void createUser(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role){
         Users user = new Users(id, name, lastname, password, birthday, address, gender, role, true);
-        usersService.createUser(conn, user);
+        usersService.createUser(user);
     }
     
     public ArrayList<Users> getStudents(boolean status){
-        return usersService.getUsers(conn, 3, status);
+        return usersService.getUsers(3, status);
     }
     
     public ArrayList<Users> getTeachers(boolean status){
-        return usersService.getUsers(conn, 2, status);
+        return usersService.getUsers(2, status);
     }
     
     public Users getUser(String id){
@@ -42,10 +40,10 @@ public class UsersController {
     
     public void updateUser(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role, boolean status){
         Users user = new Users(id, name, lastname, password, birthday, address, gender, role, status);
-        usersService.updateUser(conn, user, status);
+        usersService.updateUser(user, status);
     }
     
     public void deleteUser(String id, boolean newStatus){
-        usersService.deleteUser(conn, id, newStatus);
+        usersService.deleteUser(id, newStatus);
     }
 }

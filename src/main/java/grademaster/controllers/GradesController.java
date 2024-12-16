@@ -15,37 +15,35 @@ import java.util.ArrayList;
  */
 public class GradesController {
     private final GradesService gradesService;
-    private final Connection conn;
     
     public GradesController(GradesService gradesService, Connection conn){
         this.gradesService = gradesService;
-        this.conn = conn;
     }
     
     public ArrayList<Grades> getGrades(YearStudy yearStudy, SectionStudy sectionStudy){
-        return gradesService.getGrades(conn, yearStudy, sectionStudy);
+        return gradesService.getGrades(yearStudy, sectionStudy);
     }
     
     public ArrayList<Grades> getGradesByStudent(String id){
-        return gradesService.getGradesByStudent(conn, id);
+        return gradesService.getGradesByStudent(id);
     }
     
     public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName){
-        return gradesService.getGradesBySubject(conn, subjectName);
+        return gradesService.getGradesBySubject(subjectName);
     }
     
     public void createGrade(String studentId, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float gradeN, String nameSubject){
         Grades grade = new Grades(studentId, yearStudy, activity, period, sectionStudy, gradeN);
-        gradesService.addGrades(conn, grade, nameSubject);
+        gradesService.addGrades(grade, nameSubject);
     }
     
     public void updateGrade(String studentId, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float gradeN, String nameSubject){
         Grades grade = new Grades(studentId, yearStudy, activity, period, sectionStudy, gradeN);
-        gradesService.updateGrades(conn, grade, nameSubject);
+        gradesService.updateGrades(grade, nameSubject);
     }
     
     public void deleteGrade(String studentId, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float gradeN, String nameSubject){
         Grades grade = new Grades(studentId, yearStudy, activity, period, sectionStudy, gradeN);
-        gradesService.deleteGrades(conn, grade, nameSubject);
+        gradesService.deleteGrades(grade, nameSubject);
     }
 }

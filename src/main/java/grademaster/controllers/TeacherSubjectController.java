@@ -15,30 +15,28 @@ import java.util.ArrayList;
  */
 public class TeacherSubjectController {
     private final TeacherSubjectService teacherSubjectService;
-    private final Connection conn;
     
-    public TeacherSubjectController(TeacherSubjectService teacherSubjectService, Connection conn){
+    public TeacherSubjectController(TeacherSubjectService teacherSubjectService){
         this.teacherSubjectService = teacherSubjectService;
-        this.conn = conn;
     }
     
-    public ArrayList<TeacherSubject> getTeachers(Connection conn){
-        return teacherSubjectService.getTeachers(conn);
+    public ArrayList<TeacherSubject> getTeachers(){
+        return teacherSubjectService.getTeachers();
     }
     
     public void addTeacherForSubject(String id, String nameSubject){
         TeacherSubject teacherSubject = new TeacherSubject(id, nameSubject);        
-        teacherSubjectService.addTeacherForSubject(conn, teacherSubject);
+        teacherSubjectService.addTeacherForSubject(teacherSubject);
     }
     
     public void updateTeacherSubject(String id, String nameSubject){
         TeacherSubject teacherSubject = new TeacherSubject(id, nameSubject);        
-        teacherSubjectService.updateTeacherSubject(conn, teacherSubject);
+        teacherSubjectService.updateTeacherSubject(teacherSubject);
     }
     
     public void deleteTeacherSubject(String id, String nameSubject){
         TeacherSubject teacherSubject = new TeacherSubject(id, nameSubject);        
-        teacherSubjectService.deleteTeacherSubject(conn, teacherSubject);
+        teacherSubjectService.deleteTeacherSubject(teacherSubject);
     }
     
 }
