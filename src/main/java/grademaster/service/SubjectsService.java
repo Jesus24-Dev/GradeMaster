@@ -19,15 +19,15 @@ public class SubjectsService {
         this.conn = conn;
     }
     
-    public ArrayList<Subjects> getSubjects(Connection conn){
+    public ArrayList<Subjects> getSubjects(){
         return subjectsRepository.getSubjects(conn);
     }
     
-    public void createSubject(Connection conn, Subjects subject){
+    public void createSubject(Subjects subject){
         subjectsRepository.createSubject(conn, subject);
     }
     
-    public void deleteSubject(Connection conn, String subject){
+    public void deleteSubject(String subject){
         subjectsRepository.deleteSubject(conn, subject);
     }
 }

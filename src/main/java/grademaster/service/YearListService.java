@@ -24,19 +24,19 @@ public class YearListService {
         this.conn = conn;
     }
     
-    public ArrayList<YearList> getList(Connection conn, YearStudy yearStudy, SectionStudy sectionStudy){
+    public ArrayList<YearList> getList(YearStudy yearStudy, SectionStudy sectionStudy){
         return yearListRepository.getYearList(conn, yearStudy, sectionStudy);
     }
     
-    public void addStudentToList(Connection conn, YearList yearList){
+    public void addStudentToList(YearList yearList){
         yearListRepository.addStudentToList(conn, yearList);
     }
     
-    public void updateList(Connection conn, YearList yearList){
+    public void updateList(YearList yearList){
         yearListRepository.updateList(conn, yearList);
     }
     
-    public void deleteFromList(Connection conn, String id){
+    public void deleteFromList(String id){
         yearListRepository.deleteFromList(conn, id);
     }
 }

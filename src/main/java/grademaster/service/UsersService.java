@@ -22,11 +22,11 @@ public class UsersService {
         this.conn = conn;
     }
     
-    public void createUser(Connection conn, Users user){
+    public void createUser(Users user){
         usersRepository.addUser(conn, user);
     }
     
-    public ArrayList<Users> getUsers(Connection conn, int role, boolean status){
+    public ArrayList<Users> getUsers(int role, boolean status){
         return usersRepository.getUsers(conn, role, status);
     }
     
@@ -34,11 +34,11 @@ public class UsersService {
         return usersRepository.getUser(conn, id);
     }
     
-    public void updateUser(Connection conn, Users user, boolean status){
+    public void updateUser(Users user, boolean status){
         usersRepository.updateUser(conn, user, true);
     }
     
-    public void deleteUser(Connection conn, String id, boolean newStatus){
+    public void deleteUser(String id, boolean newStatus){
         usersRepository.deleteUser(conn, id, newStatus);
     }
 }

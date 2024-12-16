@@ -22,19 +22,19 @@ public class TeacherSubjectService {
         this.conn = conn;
     }
     
-    public ArrayList<TeacherSubject> getTeachers(Connection conn){
+    public ArrayList<TeacherSubject> getTeachers(){
         return teacherSubjectRepository.getTeachers(conn);
     }
     
-    public void addTeacherForSubject(Connection conn, TeacherSubject teacherSubject){
+    public void addTeacherForSubject(TeacherSubject teacherSubject){
         teacherSubjectRepository.addTeacherForSubject(conn, teacherSubject);
     }
     
-    public void updateTeacherSubject(Connection conn, TeacherSubject teacherSubject){
+    public void updateTeacherSubject(TeacherSubject teacherSubject){
         teacherSubjectRepository.updateTeacherSubject(conn, teacherSubject);
     }
     
-    public void deleteTeacherSubject(Connection conn, TeacherSubject teacherSubject){
+    public void deleteTeacherSubject(TeacherSubject teacherSubject){
         teacherSubjectRepository.deleteTeacherSubject(conn, teacherSubject);
     }
 }
