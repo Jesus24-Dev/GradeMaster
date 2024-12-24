@@ -27,7 +27,7 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        yearListTable = new javax.swing.JTable();
         yearStudyList = new javax.swing.JComboBox<>();
         sectionList = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -36,7 +36,7 @@ public class YearListPrincipalView extends javax.swing.JPanel {
         editListButton = new javax.swing.JButton();
         deleteFromListButton = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        yearListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -59,12 +59,12 @@ public class YearListPrincipalView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(yearListTable);
+        if (yearListTable.getColumnModel().getColumnCount() > 0) {
+            yearListTable.getColumnModel().getColumn(0).setResizable(false);
+            yearListTable.getColumnModel().getColumn(1).setResizable(false);
+            yearListTable.getColumnModel().getColumn(2).setResizable(false);
+            yearListTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -174,8 +174,8 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> sectionList;
+    private javax.swing.JTable yearListTable;
     private javax.swing.JComboBox<String> yearStudyList;
     // End of variables declaration//GEN-END:variables
 }
