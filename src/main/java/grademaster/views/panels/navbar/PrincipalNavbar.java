@@ -4,6 +4,9 @@
  */
 package grademaster.views.panels.navbar;
 
+import grademaster.utils.WindowFunctions;
+import grademaster.views.panels.content.principal.*;
+
 /**
  *
  * @author Jesus24-Dev
@@ -114,19 +117,23 @@ public class PrincipalNavbar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usersPrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersPrincipalButtonActionPerformed
-        // TODO add your handling code here:
+        UsersPrincipalView usersPrincipalView = new UsersPrincipalView();
+        WindowFunctions.changeContent(usersPrincipalView);
     }//GEN-LAST:event_usersPrincipalButtonActionPerformed
 
     private void gradePrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradePrincipalButtonActionPerformed
-        // TODO add your handling code here:
+        gradesPrincipalView grades_principalView = new gradesPrincipalView();
+        WindowFunctions.changeContent(grades_principalView);
     }//GEN-LAST:event_gradePrincipalButtonActionPerformed
 
     private void listPrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPrincipalButtonActionPerformed
-        // TODO add your handling code here:
+        YearListPrincipalView yearListPrincipalView = new YearListPrincipalView();
+        WindowFunctions.changeContent(yearListPrincipalView);
     }//GEN-LAST:event_listPrincipalButtonActionPerformed
 
     private void subjectsPrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectsPrincipalButtonActionPerformed
-        // TODO add your handling code here:
+        SubjectsPrincipalView subjectsPrincipalView = new SubjectsPrincipalView();
+        WindowFunctions.changeContent(subjectsPrincipalView);
     }//GEN-LAST:event_subjectsPrincipalButtonActionPerformed
 
 
