@@ -32,9 +32,11 @@ public class PrincipalNavbar extends javax.swing.JPanel {
         subjectsPrincipalButton = new javax.swing.JButton();
         signOutButton = new javax.swing.JButton();
 
-        usersPrincipalButton.setBackground(new java.awt.Color(0, 255, 0));
+        setBackground(new java.awt.Color(102, 0, 0));
+
+        usersPrincipalButton.setBackground(new java.awt.Color(255, 255, 255));
         usersPrincipalButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        usersPrincipalButton.setForeground(new java.awt.Color(255, 255, 255));
+        usersPrincipalButton.setForeground(new java.awt.Color(0, 0, 0));
         usersPrincipalButton.setText("Users");
         usersPrincipalButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -42,9 +44,9 @@ public class PrincipalNavbar extends javax.swing.JPanel {
             }
         });
 
-        listPrincipalButton.setBackground(new java.awt.Color(0, 255, 0));
+        listPrincipalButton.setBackground(new java.awt.Color(255, 255, 255));
         listPrincipalButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        listPrincipalButton.setForeground(new java.awt.Color(255, 255, 255));
+        listPrincipalButton.setForeground(new java.awt.Color(0, 0, 0));
         listPrincipalButton.setText("Year Lists");
         listPrincipalButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,9 +54,9 @@ public class PrincipalNavbar extends javax.swing.JPanel {
             }
         });
 
-        gradePrincipalButton.setBackground(new java.awt.Color(0, 255, 0));
+        gradePrincipalButton.setBackground(new java.awt.Color(255, 255, 255));
         gradePrincipalButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        gradePrincipalButton.setForeground(new java.awt.Color(255, 255, 255));
+        gradePrincipalButton.setForeground(new java.awt.Color(0, 0, 0));
         gradePrincipalButton.setText("Grades");
         gradePrincipalButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,9 +64,9 @@ public class PrincipalNavbar extends javax.swing.JPanel {
             }
         });
 
-        subjectsPrincipalButton.setBackground(new java.awt.Color(0, 255, 0));
+        subjectsPrincipalButton.setBackground(new java.awt.Color(255, 255, 255));
         subjectsPrincipalButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        subjectsPrincipalButton.setForeground(new java.awt.Color(255, 255, 255));
+        subjectsPrincipalButton.setForeground(new java.awt.Color(0, 0, 0));
         subjectsPrincipalButton.setText("Subjects");
         subjectsPrincipalButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,35 +74,40 @@ public class PrincipalNavbar extends javax.swing.JPanel {
             }
         });
 
-        signOutButton.setBackground(new java.awt.Color(51, 255, 51));
+        signOutButton.setBackground(new java.awt.Color(255, 255, 255));
         signOutButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        signOutButton.setForeground(new java.awt.Color(255, 255, 255));
+        signOutButton.setForeground(new java.awt.Color(0, 0, 0));
         signOutButton.setText("Sign out");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(usersPrincipalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(gradePrincipalButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(82, Short.MAX_VALUE)
                 .addComponent(signOutButton)
                 .addGap(80, 80, 80))
-            .addComponent(listPrincipalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(subjectsPrincipalButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(usersPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gradePrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(subjectsPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(usersPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gradePrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(subjectsPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(usersPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(listPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(gradePrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(subjectsPrincipalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addComponent(signOutButton)
                 .addGap(65, 65, 65))
         );
