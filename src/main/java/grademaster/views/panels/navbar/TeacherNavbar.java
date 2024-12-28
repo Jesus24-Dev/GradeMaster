@@ -4,6 +4,11 @@
  */
 package grademaster.views.panels.navbar;
 
+
+import grademaster.utils.WindowFunctions;
+import grademaster.views.panels.content.teacher.*;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Jesus24-Dev
@@ -87,11 +92,13 @@ public class TeacherNavbar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listTeacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listTeacherButtonActionPerformed
-        // TODO add your handling code here:
+        listTeacherView list_teacher_view = new listTeacherView();
+        WindowFunctions.changeContent(list_teacher_view);
     }//GEN-LAST:event_listTeacherButtonActionPerformed
 
     private void gradeTeacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeTeacherButtonActionPerformed
-        // TODO add your handling code here:
+        gradesTeacherView grades_teacher_view = new gradesTeacherView();
+        WindowFunctions.changeContent(grades_teacher_view);
     }//GEN-LAST:event_gradeTeacherButtonActionPerformed
 
 
