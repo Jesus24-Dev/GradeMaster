@@ -4,6 +4,10 @@
  */
 package grademaster.views.main;
 
+import static grademaster.GradeMaster.studentView;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Jesus24-Dev
@@ -15,6 +19,7 @@ public class WindowForm extends javax.swing.JFrame {
      */
     public WindowForm() {
         initComponents();
+
     }
 
     /**
@@ -34,33 +39,11 @@ public class WindowForm extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         navbar.setBackground(new java.awt.Color(153, 255, 153));
-
-        javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
-        navbar.setLayout(navbarLayout);
-        navbarLayout.setHorizontalGroup(
-            navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
-        );
-        navbarLayout.setVerticalGroup(
-            navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
+        navbar.setLayout(new java.awt.BorderLayout());
         getContentPane().add(navbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 800));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-        );
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
+        content.setLayout(new java.awt.BorderLayout());
         getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 0, 1050, 800));
 
         pack();
@@ -101,6 +84,13 @@ public class WindowForm extends javax.swing.JFrame {
         });
     }
 
+    public JPanel getContent(){
+        return content;
+    }
+    
+    public JPanel getNavbar(){
+        return navbar;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
     private javax.swing.JPanel navbar;
