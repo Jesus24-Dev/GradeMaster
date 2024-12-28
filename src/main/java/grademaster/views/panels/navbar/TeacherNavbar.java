@@ -30,9 +30,11 @@ public class TeacherNavbar extends javax.swing.JPanel {
         gradeTeacherButton = new javax.swing.JButton();
         signOutButton = new javax.swing.JButton();
 
-        listTeacherButton.setBackground(new java.awt.Color(0, 255, 0));
+        setBackground(new java.awt.Color(102, 0, 0));
+
+        listTeacherButton.setBackground(new java.awt.Color(255, 255, 255));
         listTeacherButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        listTeacherButton.setForeground(new java.awt.Color(255, 255, 255));
+        listTeacherButton.setForeground(new java.awt.Color(0, 0, 0));
         listTeacherButton.setText("Year Lists");
         listTeacherButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,39 +42,45 @@ public class TeacherNavbar extends javax.swing.JPanel {
             }
         });
 
-        gradeTeacherButton.setBackground(new java.awt.Color(0, 255, 0));
+        gradeTeacherButton.setBackground(new java.awt.Color(255, 255, 255));
         gradeTeacherButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        gradeTeacherButton.setForeground(new java.awt.Color(255, 255, 255));
+        gradeTeacherButton.setForeground(new java.awt.Color(0, 0, 0));
         gradeTeacherButton.setText("Grades");
+        gradeTeacherButton.setPreferredSize(new java.awt.Dimension(125, 40));
         gradeTeacherButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gradeTeacherButtonActionPerformed(evt);
             }
         });
 
-        signOutButton.setBackground(new java.awt.Color(51, 255, 51));
+        signOutButton.setBackground(new java.awt.Color(255, 255, 255));
         signOutButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        signOutButton.setForeground(new java.awt.Color(255, 255, 255));
+        signOutButton.setForeground(new java.awt.Color(0, 0, 0));
         signOutButton.setText("Sign out");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listTeacherButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(gradeTeacherButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(82, Short.MAX_VALUE)
                 .addComponent(signOutButton)
                 .addGap(80, 80, 80))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gradeTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(listTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gradeTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
+                .addComponent(listTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(gradeTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
                 .addComponent(signOutButton)
                 .addGap(65, 65, 65))
         );
