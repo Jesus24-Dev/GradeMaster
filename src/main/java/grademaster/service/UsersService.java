@@ -41,4 +41,19 @@ public class UsersService {
     public void deleteUser(String id, boolean newStatus){
         usersRepository.deleteUser(conn, id, newStatus);
     }
+    
+    public int authenticateUser(String id, String password){   
+        if(id.equals("") || password.equals("")){
+            return -2;
+        } else{
+            Users userToAuthenticate = usersRepository.getUser(conn, id);
+            if(userToAuthenticate == null){               
+                return 0;
+            } else if(userToAuthenticate.getPassword().equals(password) && userToAuthenticate.getId().equals(id)){
+                return userToAuthenticate.getRole();
+            } else {
+                return -1;
+            }
+        }           
+    }
 }
