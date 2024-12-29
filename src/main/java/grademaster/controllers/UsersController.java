@@ -46,4 +46,8 @@ public class UsersController {
     public void deleteUser(String id, boolean newStatus){
         usersService.deleteUser(id, newStatus);
     }
+    
+    public int authenticate(String id, String password){
+        return usersService.authenticateUser(id, password);
+    }
 }
