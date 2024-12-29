@@ -4,6 +4,8 @@
  */
 package grademaster.views.panels.navbar;
 
+import grademaster.utils.WindowFunctions;
+
 /**
  *
  * @author Jesus24-Dev
@@ -44,6 +46,11 @@ public class StudentNavbar extends javax.swing.JPanel {
         signOutButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         signOutButton.setForeground(new java.awt.Color(0, 0, 0));
         signOutButton.setText("Sign out");
+        signOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signOutButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,6 +142,11 @@ public class StudentNavbar extends javax.swing.JPanel {
                 .addGap(65, 65, 65))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void signOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutButtonActionPerformed
+        WindowFunctions.closeWindow();
+        WindowFunctions.startLogin();        
+    }//GEN-LAST:event_signOutButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
