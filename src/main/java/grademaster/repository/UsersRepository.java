@@ -47,7 +47,7 @@ public class UsersRepository {
     }
     
     public Users getUser(Connection conn, String id){
-        String query = "SELECT id, name, lastname, birthday, address, gender, rol, status FROM users WHERE id = ?";
+        String query = "SELECT id, name, lastname, password, birthday, address, gender, rol, status FROM users WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, id);
             try(ResultSet resultset = statement.executeQuery()){
