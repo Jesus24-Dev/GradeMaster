@@ -56,7 +56,7 @@ public class UsersRepository {
                             resultset.getString("id"),
                             resultset.getString("name"),
                             resultset.getString("lastname"),
-                            "",                          
+                            resultset.getString("password"),
                             resultset.getDate("birthday"),
                             resultset.getString("address"),
                             resultset.getString("gender"),
