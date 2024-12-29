@@ -4,17 +4,20 @@
  */
 package grademaster.views.main;
 
+import grademaster.GradeMaster;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Jesus24-Dev
  */
 public class LoginForm extends javax.swing.JFrame {
-
     /**
      * Creates new form LoginForm
      */
     public LoginForm() {
         initComponents();
+        idField1.setText("");
+        passwordField.setText("");
     }
 
     /**
@@ -149,7 +152,20 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
+        String id = idField1.getText();
+        char[] password = passwordField.getPassword();
+        String passwordString = new String(password);   
+        int number = GradeMaster.userController.authenticate(id, passwordString);
+        
+        if (number == 0){
+            JOptionPane.showMessageDialog(null, "Can't find user with this ID");
+        } else if (number == -1){
+            JOptionPane.showMessageDialog(null, "Password is wrong");
+        } else if (number == -2){
+            JOptionPane.showMessageDialog(null, "Fields should not be empty.");
+        } else {
+            GradeMaster.getWindow(number);
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
