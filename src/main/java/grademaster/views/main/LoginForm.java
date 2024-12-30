@@ -164,6 +164,7 @@ public class LoginForm extends javax.swing.JFrame {
         } else if (number == -2){
             JOptionPane.showMessageDialog(null, "Fields should not be empty.");
         } else {
+            GradeMaster.user = GradeMaster.userController.getUser(id);
             GradeMaster.getWindow(number);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
