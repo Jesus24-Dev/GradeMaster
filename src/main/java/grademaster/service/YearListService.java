@@ -39,4 +39,8 @@ public class YearListService {
     public void deleteFromList(String id){
         yearListRepository.deleteFromList(conn, id);
     }
+    
+    public YearList getStudentFromList(String id){
+        return yearListRepository.getStudentFromList(conn, id);
+    }
 }

@@ -82,4 +82,24 @@ public class YearListRepository {
             throw new RuntimeException(e);
         }
     }
+    
+    public YearList getStudentFromList(Connection conn, String id){
+        String sql = "SELECT studentid, yearstudy, section FROM yearlist WHERE studentid = ?";
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();          
+            while(rs.next()){
+                YearList student = new YearList(
+                        rs.getString("studentid"),
+                        YearStudy.valueOf(rs.getString("yearstudy")),
+                        SectionStudy.valueOf(rs.getString("section"))                      
+                );
+                return student;
+            }
+        } catch (SQLException e){
+            System.out.println(e);
+            return null;
+        } 
+        return null;
+    }
 }

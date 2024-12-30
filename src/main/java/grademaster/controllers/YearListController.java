@@ -38,4 +38,8 @@ public class YearListController {
     public void deleteFromList(String id){
         yearListService.deleteFromList(id);
     }
+    
+    public YearList getStudentFromList(String id){
+       return yearListService.getStudentFromList(id);
+    }
 }
