@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class GradesController {
     private final GradesService gradesService;
     
-    public GradesController(GradesService gradesService, Connection conn){
+    public GradesController(GradesService gradesService){
         this.gradesService = gradesService;
     }
     
