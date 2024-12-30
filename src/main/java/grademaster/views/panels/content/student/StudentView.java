@@ -4,6 +4,12 @@
  */
 package grademaster.views.panels.content.student;
 
+import grademaster.GradeMaster;
+import grademaster.models.Subjects;
+import grademaster.utils.StudyEnums;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Jesus24-Dev
@@ -15,6 +21,7 @@ public class StudentView extends javax.swing.JPanel {
      */
     public StudentView() {
         initComponents();
+        fillComponents();
     }
 
     /**
@@ -98,7 +105,44 @@ public class StudentView extends javax.swing.JPanel {
         jLabel4.setText("School Grades");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 81, 262, 126));
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void fillComponents(){
+        fillComboBoxEnums();
+        fillSubjectsComboBox();
+    }
+    
+    public void fillComboBoxEnums(){
+        StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
+        StudyEnums.Period periodStudy[] = StudyEnums.Period.values();
+        String yearStudyArr[] = new String[5];
+        String periodArr[] = new String[3];
+        
+        for(int i = 0; i < 5; i++){
+            yearStudyArr[i] = yearStudy[i].toString();
+        }
+        for(int i = 0; i < 3; i++){
+            periodArr[i] = periodStudy[i].toString();
+        }
+        DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(yearStudyArr);
+        DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(periodArr);
+        yearStudyList.setModel(model1);
+        periodList.setModel(model2);
+    }
+    
+    public void fillSubjectsComboBox(){
+        ArrayList<Subjects> subjects  = GradeMaster.subjectController.getSubjects();
+        String subjectArr[] = new String[subjects.size()];
+        int i = 0;
+        for(Subjects s : subjects){
+            subjectArr[i] = s.getName();
+            i++;
+        }
+        
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(subjectArr);
+        subjectList.setModel(model);
+    }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
