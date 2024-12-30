@@ -4,7 +4,6 @@
  */
 package grademaster.views.main;
 
-import static grademaster.GradeMaster.studentView;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
