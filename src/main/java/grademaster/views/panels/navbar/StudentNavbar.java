@@ -4,6 +4,8 @@
  */
 package grademaster.views.panels.navbar;
 
+import grademaster.GradeMaster;
+import grademaster.models.YearList;
 import grademaster.utils.WindowFunctions;
 
 /**
@@ -17,6 +19,7 @@ public class StudentNavbar extends javax.swing.JPanel {
      */
     public StudentNavbar() {
         initComponents();
+        fillContent();
     }
 
     /**
@@ -148,6 +151,15 @@ public class StudentNavbar extends javax.swing.JPanel {
         WindowFunctions.startLogin();        
     }//GEN-LAST:event_signOutButtonActionPerformed
 
+    private void fillContent(){
+        YearList yearList = GradeMaster.yearListController.getStudentFromList(GradeMaster.user.getId());
+        idStudentField.setText(GradeMaster.user.getId());
+        nameStudentField.setText(GradeMaster.user.getName());
+        lastnameStudentField.setText(GradeMaster.user.getLastname());
+        sectionStudentField.setText(yearList.getSection().toString());
+        yearStudentField.setText(yearList.getYearStudy().toString());
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel idStudentField;
