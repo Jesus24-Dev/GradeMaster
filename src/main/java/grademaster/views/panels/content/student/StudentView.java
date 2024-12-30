@@ -5,10 +5,12 @@
 package grademaster.views.panels.content.student;
 
 import grademaster.GradeMaster;
+import grademaster.models.Grades;
 import grademaster.models.Subjects;
 import grademaster.utils.StudyEnums;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +24,7 @@ public class StudentView extends javax.swing.JPanel {
     public StudentView() {
         initComponents();
         fillComponents();
+        fillTable();
     }
 
     /**
@@ -106,12 +109,12 @@ public class StudentView extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 81, 262, 126));
     }// </editor-fold>//GEN-END:initComponents
     
-    public void fillComponents(){
+    private void fillComponents(){
         fillComboBoxEnums();
         fillSubjectsComboBox();
     }
     
-    public void fillComboBoxEnums(){
+    private void fillComboBoxEnums(){
         StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
         StudyEnums.Period periodStudy[] = StudyEnums.Period.values();
         String yearStudyArr[] = new String[5];
@@ -129,7 +132,7 @@ public class StudentView extends javax.swing.JPanel {
         periodList.setModel(model2);
     }
     
-    public void fillSubjectsComboBox(){
+    private void fillSubjectsComboBox(){
         ArrayList<Subjects> subjects  = GradeMaster.subjectController.getSubjects();
         String subjectArr[] = new String[subjects.size()];
         int i = 0;
@@ -141,6 +144,30 @@ public class StudentView extends javax.swing.JPanel {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(subjectArr);
         subjectList.setModel(model);
     }
+    
+    private void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) studentGrades.getModel();
+        model.setRowCount(0);
+
+        // Obtener la lista de calificaciones
+        ArrayList<Grades> grades = GradeMaster.gradesController.getGrades(
+            StudyEnums.YearStudy.FIFTH_YEAR, 
+            StudyEnums.SectionStudy.SECTION_A
+        );
+
+        for (Grades grade : grades) {
+
+            String yearStudy = grade.getYearStudy().toString();  
+            String subject = grade.getNameSubject();     
+            String period = grade.getPeriod().toString();      
+            String activity = grade.getActivity().toString();    
+            float gradeValue = grade.getGrade(); 
+
+            Object[] newRow = {yearStudy, subject, period, activity, gradeValue};
+            model.addRow(newRow);
+        }
+    }
+
     
    
 
