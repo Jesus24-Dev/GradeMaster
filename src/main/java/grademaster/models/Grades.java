@@ -90,6 +90,10 @@ public class Grades {
     public void setGrade(float grade) {
         this.grade = grade;
     }
+
+    public String getNameSubject() {
+        return nameSubject;
+    }
     
     
 }
