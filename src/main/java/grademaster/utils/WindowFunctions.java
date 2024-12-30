@@ -7,12 +7,21 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 public class WindowFunctions {
-    private static WindowForm windowForm = new WindowForm();
-    private static JPanel content = windowForm.getContent();
-    private static JPanel navbar = windowForm.getNavbar();
+    private static WindowForm windowForm;
+    private static JPanel content;
+    private static JPanel navbar;
     public static LoginForm loginForm; 
     
+    private static void initializeWindowForm() {
+        if (windowForm == null) {
+            windowForm = new WindowForm();
+            content = windowForm.getContent();
+            navbar = windowForm.getNavbar();
+        }
+    }
+    
     public static void changeContent(JPanel panelToChange){
+        initializeWindowForm();
         content.removeAll();
         content.add(panelToChange, BorderLayout.CENTER);
         content.revalidate();
@@ -20,6 +29,7 @@ public class WindowFunctions {
     }
     
     public static void changeNavbar(JPanel navbarToChange){
+        initializeWindowForm();
         navbar.removeAll();
         navbar.add(navbarToChange, BorderLayout.CENTER);
         navbar.revalidate();
@@ -27,16 +37,21 @@ public class WindowFunctions {
     }
     
     public static void changeTitle(String title){
+        initializeWindowForm();
         windowForm.setTitle(title);
     }
     
     public static void setWindowVisible(){
+        initializeWindowForm();
         windowForm.setVisible(true);
         windowForm.setLocationRelativeTo(null);
     }
     
     public static void closeWindow(){
-        windowForm.dispose();
+        if (windowForm != null) {
+            windowForm.dispose();
+            windowForm = null;
+        }
     }
     
     public static void startLogin(){
@@ -47,6 +62,9 @@ public class WindowFunctions {
     }
     
     public static void closeLogin(){
-        loginForm.dispose();
+         if (loginForm != null) {
+            loginForm.dispose();
+            loginForm = null;
+        }
     }
 }
