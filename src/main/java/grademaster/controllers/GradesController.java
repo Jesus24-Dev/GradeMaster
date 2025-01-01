@@ -20,8 +20,8 @@ public class GradesController {
         this.gradesService = gradesService;
     }
     
-    public ArrayList<Grades> getGrades(YearStudy yearStudy){
-        return gradesService.getGrades(yearStudy);
+    public ArrayList<Grades> getGrades(YearStudy yearStudy, Period period){
+        return gradesService.getGrades(yearStudy, period);
     }
     
     public ArrayList<Grades> getGradesByStudent(String id){

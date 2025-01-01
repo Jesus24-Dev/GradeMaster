@@ -7,6 +7,7 @@ package grademaster.service;
 import java.sql.Connection;
 import grademaster.repository.GradesRepository;
 import grademaster.models.Grades;
+import grademaster.utils.StudyEnums.Period;
 import grademaster.utils.StudyEnums.SectionStudy;
 import grademaster.utils.StudyEnums.YearStudy;
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class GradesService {
         this.conn = conn;
     }
     
-    public ArrayList<Grades> getGrades(YearStudy yearStudy){
-        return gradesRepository.getGrades(conn, yearStudy);
+    public ArrayList<Grades> getGrades(YearStudy yearStudy, Period period){
+        return gradesRepository.getGrades(conn, yearStudy, period);
     }
     
     public ArrayList<Grades> getGradesByStudent(String id){
