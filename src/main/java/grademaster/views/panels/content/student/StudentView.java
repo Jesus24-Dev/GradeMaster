@@ -18,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class StudentView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form StudentView
-     */
+    private StudyEnums.Period period;
+    private StudyEnums.YearStudy yearStudy;
+    
     public StudentView() {
         initComponents();
         fillComponents();
+        currentPeriod();
+        currentYearStudy();
         fillTable();
     }
 
@@ -82,10 +84,20 @@ public class StudentView extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 354, 965, -1));
 
+        yearStudyList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearStudyListActionPerformed(evt);
+            }
+        });
         add(yearStudyList, new org.netbeans.lib.awtextra.AbsoluteConstraints(574, 229, 125, 40));
 
         add(subjectList, new org.netbeans.lib.awtextra.AbsoluteConstraints(727, 229, 125, 40));
 
+        periodList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                periodListActionPerformed(evt);
+            }
+        });
         add(periodList, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 229, 125, 40));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -108,6 +120,16 @@ public class StudentView extends javax.swing.JPanel {
         jLabel4.setText("School Grades");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 81, 262, 126));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void periodListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_periodListActionPerformed
+        currentPeriod();
+        fillTable();
+    }//GEN-LAST:event_periodListActionPerformed
+
+    private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
+        currentYearStudy();
+        fillTable();
+    }//GEN-LAST:event_yearStudyListActionPerformed
     
     private void fillComponents(){
         fillComboBoxEnums();
@@ -134,8 +156,9 @@ public class StudentView extends javax.swing.JPanel {
     
     private void fillSubjectsComboBox(){
         ArrayList<Subjects> subjects  = GradeMaster.subjectController.getSubjects();
-        String subjectArr[] = new String[subjects.size()];
-        int i = 0;
+        String subjectArr[] = new String[subjects.size() + 1];
+        int i = 1;
+        subjectArr[0] = "ALL SUBJECTS";
         for(Subjects s : subjects){
             subjectArr[i] = s.getName();
             i++;
@@ -148,15 +171,8 @@ public class StudentView extends javax.swing.JPanel {
     private void fillTable() {
         DefaultTableModel model = (DefaultTableModel) studentGrades.getModel();
         model.setRowCount(0);
-
-        // Obtener la lista de calificaciones
-        ArrayList<Grades> grades = GradeMaster.gradesController.getGrades(
-            StudyEnums.YearStudy.FIFTH_YEAR, 
-            StudyEnums.SectionStudy.SECTION_A
-        );
-
+        ArrayList<Grades> grades = GradeMaster.gradesController.getGrades(yearStudy, period);
         for (Grades grade : grades) {
-
             String yearStudy = grade.getYearStudy().toString();  
             String subject = grade.getNameSubject();     
             String period = grade.getPeriod().toString();      
@@ -166,6 +182,14 @@ public class StudentView extends javax.swing.JPanel {
             Object[] newRow = {yearStudy, subject, period, activity, gradeValue};
             model.addRow(newRow);
         }
+    }
+    
+    private void currentPeriod(){
+        period = StudyEnums.Period.valueOf((String) periodList.getSelectedItem());
+    }
+    
+    private void currentYearStudy(){
+        yearStudy = StudyEnums.YearStudy.valueOf((String) yearStudyList.getSelectedItem());
     }
 
     
