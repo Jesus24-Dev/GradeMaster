@@ -17,18 +17,18 @@ import java.util.ArrayList;
  * @author Jesus24-Dev
  */
 public class GradesRepository {
-    public ArrayList<Grades> getGrades(Connection conn, YearStudy yearStudy, SectionStudy sectionStudy){
+    public ArrayList<Grades> getGrades(Connection conn, YearStudy yearStudy){
         ArrayList<Grades> grades = new ArrayList<>();
         String query = """
-                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, c.activity, c.periodtest, c.sectionstudy, c.grade
+                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, c.activity, c.periodtest, c.grade
                        FROM grades c
                        INNER JOIN  users a on c.studentid = a.id
                        INNER JOIN subject b on b.id = c.subjectid
-                       WHERE c.yearstudy = ? AND c.sectionstudy = ?
+                       WHERE c.yearstudy = ?
                        """;
         try(PreparedStatement pstm = conn.prepareStatement(query)){
             pstm.setString(1, yearStudy.toString());
-            pstm.setString(2, sectionStudy.toString());
+
             
             ResultSet rs = pstm.executeQuery();
                 if(rs.next()){
@@ -41,7 +41,6 @@ public class GradesRepository {
                             YearStudy.valueOf(rs.getString("yearstudy")),
                             Test.valueOf(rs.getString("activity")),
                             Period.valueOf(rs.getString("periodtest")),
-                            SectionStudy.valueOf(rs.getString("sectionstudy")),
                             rs.getFloat("grade")
                     ); 
                     grades.add(grade);
@@ -58,7 +57,7 @@ public class GradesRepository {
     public ArrayList<Grades> getGradesByStudent(Connection conn, String id){
         ArrayList<Grades> grades = new ArrayList<>();
         String query = """
-                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, c.activity, c.periodtest, c.sectionstudy, c.grade
+                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, c.activity, c.periodtest, c.grade
                        FROM grades c
                        INNER JOIN  users a on c.studentid = a.id
                        INNER JOIN subject b on b.id = c.subjectid
@@ -77,7 +76,6 @@ public class GradesRepository {
                             YearStudy.valueOf(rs.getString("yearstudy")),
                             Test.valueOf(rs.getString("activity")),
                             Period.valueOf(rs.getString("periodtest")),
-                            SectionStudy.valueOf(rs.getString("sectionstudy")),
                             rs.getFloat("grade")
                     ); 
                     grades.add(grade);
@@ -94,7 +92,7 @@ public class GradesRepository {
     public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName){
         ArrayList<Grades> grades = new ArrayList<>();
         String query = """
-                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, c.activity, c.periodtest, c.sectionstudy, c.grade
+                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, c.activity, c.periodtest, c.grade
                        FROM grades c
                        INNER JOIN  users a on c.studentid = a.id
                        INNER JOIN subject b on b.id = c.subjectid
@@ -113,7 +111,6 @@ public class GradesRepository {
                             YearStudy.valueOf(rs.getString("yearstudy")),
                             Test.valueOf(rs.getString("activity")),
                             Period.valueOf(rs.getString("periodtest")),
-                            SectionStudy.valueOf(rs.getString("sectionstudy")),
                             rs.getFloat("grade")
                     ); 
                     grades.add(grade);
@@ -137,7 +134,6 @@ public class GradesRepository {
             psmt.setString(4, grade.getActivity().toString());
             psmt.setString(5, grade.getPeriod().toString());
             psmt.setFloat(6, grade.getGrade());
-            psmt.setString(7, grade.getSectionStudy().toString());
             psmt.executeUpdate();
         } catch (SQLException e){
             throw new RuntimeException(e);

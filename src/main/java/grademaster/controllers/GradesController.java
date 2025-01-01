@@ -20,8 +20,8 @@ public class GradesController {
         this.gradesService = gradesService;
     }
     
-    public ArrayList<Grades> getGrades(YearStudy yearStudy, SectionStudy sectionStudy){
-        return gradesService.getGrades(yearStudy, sectionStudy);
+    public ArrayList<Grades> getGrades(YearStudy yearStudy){
+        return gradesService.getGrades(yearStudy);
     }
     
     public ArrayList<Grades> getGradesByStudent(String id){
@@ -32,18 +32,18 @@ public class GradesController {
         return gradesService.getGradesBySubject(subjectName);
     }
     
-    public void createGrade(String studentId, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float gradeN, String nameSubject){
-        Grades grade = new Grades(studentId, yearStudy, activity, period, sectionStudy, gradeN);
+    public void createGrade(String studentId, YearStudy yearStudy, Test activity, Period period, float gradeN, String nameSubject){
+        Grades grade = new Grades(studentId, yearStudy, activity, period,gradeN);
         gradesService.addGrades(grade, nameSubject);
     }
     
-    public void updateGrade(String studentId, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float gradeN, String nameSubject){
-        Grades grade = new Grades(studentId, yearStudy, activity, period, sectionStudy, gradeN);
+    public void updateGrade(String studentId, YearStudy yearStudy, Test activity, Period period, float gradeN, String nameSubject){
+        Grades grade = new Grades(studentId, yearStudy, activity, period, gradeN);
         gradesService.updateGrades(grade, nameSubject);
     }
     
-    public void deleteGrade(String studentId, YearStudy yearStudy, Test activity, Period period, SectionStudy sectionStudy, float gradeN, String nameSubject){
-        Grades grade = new Grades(studentId, yearStudy, activity, period, sectionStudy, gradeN);
+    public void deleteGrade(String studentId, YearStudy yearStudy, Test activity, Period period, float gradeN, String nameSubject){
+        Grades grade = new Grades(studentId, yearStudy, activity, period, gradeN);
         gradesService.deleteGrades(grade, nameSubject);
     }
 }

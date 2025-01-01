@@ -24,8 +24,8 @@ public class GradesService {
         this.conn = conn;
     }
     
-    public ArrayList<Grades> getGrades(YearStudy yearStudy, SectionStudy sectionStudy){
-        return gradesRepository.getGrades(conn, yearStudy, sectionStudy);
+    public ArrayList<Grades> getGrades(YearStudy yearStudy){
+        return gradesRepository.getGrades(conn, yearStudy);
     }
     
     public ArrayList<Grades> getGradesByStudent(String id){
