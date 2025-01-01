@@ -28,7 +28,7 @@ public class GradesController {
         return gradesService.getGradesByStudent(id);
     }
     
-    public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName, YearStudy yearStudy, Period period){
+    public ArrayList<Grades> getGradesBySubject(String subjectName, YearStudy yearStudy, Period period){
         return gradesService.getGradesBySubject(subjectName, yearStudy, period);
     }
     
