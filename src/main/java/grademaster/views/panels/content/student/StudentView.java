@@ -91,6 +91,11 @@ public class StudentView extends javax.swing.JPanel {
         });
         add(yearStudyList, new org.netbeans.lib.awtextra.AbsoluteConstraints(574, 229, 125, 40));
 
+        subjectList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subjectListActionPerformed(evt);
+            }
+        });
         add(subjectList, new org.netbeans.lib.awtextra.AbsoluteConstraints(727, 229, 125, 40));
 
         periodList.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +135,10 @@ public class StudentView extends javax.swing.JPanel {
         currentYearStudy();
         fillTable();
     }//GEN-LAST:event_yearStudyListActionPerformed
+
+    private void subjectListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectListActionPerformed
+        fillTable();
+    }//GEN-LAST:event_subjectListActionPerformed
     
     private void fillComponents(){
         fillComboBoxEnums();
@@ -171,7 +180,15 @@ public class StudentView extends javax.swing.JPanel {
     private void fillTable() {
         DefaultTableModel model = (DefaultTableModel) studentGrades.getModel();
         model.setRowCount(0);
-        ArrayList<Grades> grades = GradeMaster.gradesController.getGrades(yearStudy, period);
+        ArrayList<Grades> grades;
+        
+        if(checkSubject()){
+           grades = GradeMaster.gradesController.getGrades(yearStudy, period);
+        } else {
+            String subject = (String) subjectList.getSelectedItem();
+            grades = GradeMaster.gradesController.getGradesBySubject(subject, yearStudy, period);
+        }
+        
         for (Grades grade : grades) {
             String yearStudy = grade.getYearStudy().toString();  
             String subject = grade.getNameSubject();     
@@ -190,6 +207,10 @@ public class StudentView extends javax.swing.JPanel {
     
     private void currentYearStudy(){
         yearStudy = StudyEnums.YearStudy.valueOf((String) yearStudyList.getSelectedItem());
+    }
+    
+    private boolean checkSubject(){
+        return subjectList.getSelectedItem().equals("ALL SUBJECTS");
     }
 
     
