@@ -89,17 +89,19 @@ public class GradesRepository {
         }
     }
     
-    public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName){
+    public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName, YearStudy yearStudy, Period period){
         ArrayList<Grades> grades = new ArrayList<>();
         String query = """
                        SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, c.activity, c.periodtest, c.grade
                        FROM grades c
                        INNER JOIN  users a on c.studentid = a.id
                        INNER JOIN subject b on b.id = c.subjectid
-                       WHERE c.subjectid = (SELECT id FROM subject WHERE namesubject = ?)
+                       WHERE c.subjectid = (SELECT id FROM subject WHERE namesubject = ?) AND c.yearstudy = ? AND c.periodtest = ?
                        """;
         try(PreparedStatement pstm = conn.prepareStatement(query)){
             pstm.setString(1, subjectName);
+            pstm.setString(2, yearStudy.toString());
+            pstm.setString(3, period.toString());
             ResultSet rs = pstm.executeQuery();
                 if(rs.next()){
                     do {
@@ -123,6 +125,7 @@ public class GradesRepository {
             return null;
         }
     }
+    
     
     public void addGrades(Connection conn, Grades grade, String subject){
         String sql = "INSERT INTO grades (studentid, subjectid, yearstudy, activity, periodtest, grade, sectionstudy)"

@@ -33,8 +33,8 @@ public class GradesService {
         return gradesRepository.getGradesByStudent(conn, id);
     }
     
-    public ArrayList<Grades> getGradesBySubject(String subjectName){
-        return gradesRepository.getGradesBySubject(conn, subjectName);
+    public ArrayList<Grades> getGradesBySubject(String subjectName, YearStudy yearStudy, Period period){
+        return gradesRepository.getGradesBySubject(conn, subjectName, yearStudy, period);
     }
     
     public void addGrades(Grades grade, String subject){

@@ -28,8 +28,8 @@ public class GradesController {
         return gradesService.getGradesByStudent(id);
     }
     
-    public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName){
-        return gradesService.getGradesBySubject(subjectName);
+    public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName, YearStudy yearStudy, Period period){
+        return gradesService.getGradesBySubject(subjectName, yearStudy, period);
     }
     
     public void createGrade(String studentId, YearStudy yearStudy, Test activity, Period period, float gradeN, String nameSubject){
