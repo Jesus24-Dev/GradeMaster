@@ -4,8 +4,13 @@
  */
 package grademaster.views.panels.content.teacher;
 
+import grademaster.GradeMaster;
+import grademaster.models.Grades;
+import grademaster.models.TeacherSubject;
 import grademaster.utils.StudyEnums;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +18,17 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class gradesTeacherView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form gradesTeacherView
-     */
+    private String subjectName;
+    private StudyEnums.SectionStudy sectionStudy;
+    private StudyEnums.YearStudy yearStudy;
     public gradesTeacherView() {
         initComponents();
         fillComboBoxEnums();
+        fillSubjectComboBox();
+        currentYearStudy();
+        currentSection();
+        currentSubject();
+        fillTable();
     }
 
     /**
@@ -98,6 +108,24 @@ public class gradesTeacherView extends javax.swing.JPanel {
 
         deleteButton.setText("Delete grade");
         deleteButton.setEnabled(false);
+
+        subjectList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subjectListActionPerformed(evt);
+            }
+        });
+
+        yearStudyList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearStudyListActionPerformed(evt);
+            }
+        });
+
+        sectionList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sectionListActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -181,6 +209,21 @@ public class gradesTeacherView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_editButtonActionPerformed
 
+    private void subjectListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectListActionPerformed
+        currentSubject();
+        fillTable();
+    }//GEN-LAST:event_subjectListActionPerformed
+
+    private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
+        currentYearStudy();
+        fillTable();
+    }//GEN-LAST:event_yearStudyListActionPerformed
+
+    private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
+        currentSection();
+        fillTable();
+    }//GEN-LAST:event_sectionListActionPerformed
+
     private void fillComboBoxEnums(){
         StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
         StudyEnums.SectionStudy sectionStudy[] = StudyEnums.SectionStudy.values();
@@ -197,6 +240,55 @@ public class gradesTeacherView extends javax.swing.JPanel {
         DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(sectionStudyArr);
         yearStudyList.setModel(model1);
         sectionList.setModel(model2);
+    }
+    
+    private void fillSubjectComboBox(){
+        ArrayList<TeacherSubject> subjects = GradeMaster.teacherSubjectController.getTeacherBySubject(GradeMaster.user.getId());
+        if (subjects != null){
+            String subjectArr[] = new String[subjects.size()];
+            int i = 0;
+            
+            for(TeacherSubject s : subjects){
+                subjectArr[i] = s.getNameSubject();
+                i++;
+            }
+            DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(subjectArr);
+            subjectList.setModel(model1);
+        } 
+    }
+    
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) studentGrades1.getModel();
+        model.setRowCount(0);
+        ArrayList<Grades> grades = GradeMaster.gradesController.getGradesBySubjectTeacher(subjectName, yearStudy, sectionStudy);
+        if(grades != null){       
+            for (Grades grade : grades) {
+                String id = grade.getStudentId();
+                String name = grade.getNameStudent();
+                String lastname = grade.getLastnameStudent();
+                String subject = grade.getNameSubject();  
+                String yearStudy = grade.getYearStudy().toString();  
+                String section = grade.getSection().toString();
+                String activity = grade.getActivity().toString(); 
+                String period = grade.getPeriod().toString();                     
+                float gradeValue = grade.getGrade(); 
+
+                Object[] newRow = {id, name, lastname, subject, yearStudy,  section, activity, period, gradeValue};
+                model.addRow(newRow);
+            }
+        }
+    }
+    
+    private void currentSection(){
+        sectionStudy = StudyEnums.SectionStudy.valueOf((String) sectionList.getSelectedItem());
+    }
+    
+    private void currentYearStudy(){
+        yearStudy = StudyEnums.YearStudy.valueOf((String) yearStudyList.getSelectedItem());
+    }
+    
+    private void currentSubject(){
+        subjectName = (String) subjectList.getSelectedItem();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
