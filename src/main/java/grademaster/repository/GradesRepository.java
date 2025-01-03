@@ -89,19 +89,21 @@ public class GradesRepository {
         }
     }
     
-    public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName, YearStudy yearStudy, Period period){
+    public ArrayList<Grades> getGradesBySubject(Connection conn, String subjectName, YearStudy yearStudy, Period period, SectionStudy sectionStudy){
         ArrayList<Grades> grades = new ArrayList<>();
         String query = """
-                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, c.activity, c.periodtest, c.grade
+                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, d.section, c.activity, c.periodtest, c.grade
                        FROM grades c
                        INNER JOIN  users a on c.studentid = a.id
                        INNER JOIN subject b on b.id = c.subjectid
-                       WHERE c.subjectid = (SELECT id FROM subject WHERE namesubject = ?) AND c.yearstudy = ? AND c.periodtest = ?
+                       INNER JOIN yearlist d on d.studentid = a.id
+                       WHERE c.subjectid = (SELECT id FROM subject WHERE namesubject = ?) AND c.yearstudy = ? AND c.periodtest = ? AND d.section ?
                        """;
         try(PreparedStatement pstm = conn.prepareStatement(query)){
             pstm.setString(1, subjectName);
             pstm.setString(2, yearStudy.toString());
             pstm.setString(3, period.toString());
+            pstm.setString(4, sectionStudy.toString());
             ResultSet rs = pstm.executeQuery();
                 if(rs.next()){
                     do {
@@ -110,6 +112,7 @@ public class GradesRepository {
                             rs.getString("name"),
                             rs.getString("lastname"),
                             rs.getString("namesubject"),
+                            SectionStudy.valueOf(rs.getString("section")),
                             YearStudy.valueOf(rs.getString("yearstudy")),
                             Test.valueOf(rs.getString("activity")),
                             Period.valueOf(rs.getString("periodtest")),
@@ -170,6 +173,45 @@ public class GradesRepository {
             psmt.executeUpdate();
         } catch (SQLException e){
             throw new RuntimeException(e);
+        }
+    }
+    
+    public ArrayList<Grades> getGradesBySubjectTeacher(Connection conn, String subjectName, YearStudy yearStudy, SectionStudy sectionStudy){
+        ArrayList<Grades> grades = new ArrayList<>();
+        String query = """
+                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, d.section, c.activity, c.periodtest, c.grade
+                       FROM grades c
+                       INNER JOIN  users a on c.studentid = a.id
+                       INNER JOIN subject b on b.id = c.subjectid
+                       INNER JOIN yearlist d on d.studentid = a.id
+                       WHERE c.subjectid = (SELECT id FROM subject WHERE namesubject = ?) AND c.yearstudy = ? AND d.section = ?
+                       """;
+        try(PreparedStatement pstm = conn.prepareStatement(query)){
+            pstm.setString(1, subjectName);
+            pstm.setString(2, yearStudy.toString());
+            pstm.setString(3, sectionStudy.toString());
+            ResultSet rs = pstm.executeQuery();
+                if(rs.next()){
+                    do {
+                    Grades grade = new Grades(
+                            rs.getString("id"),
+                            rs.getString("name"),
+                            rs.getString("lastname"),
+                            rs.getString("namesubject"),
+                            SectionStudy.valueOf(rs.getString("section")),
+                            YearStudy.valueOf(rs.getString("yearstudy")),
+                            Test.valueOf(rs.getString("activity")),
+                            Period.valueOf(rs.getString("periodtest")),
+                            rs.getFloat("grade")
+                    ); 
+                    grades.add(grade);
+                } while(rs.next());
+            }
+            rs.close();   
+            return grades;
+        } catch (SQLException e){
+            System.out.println(e);
+            return null;
         }
     }
 }

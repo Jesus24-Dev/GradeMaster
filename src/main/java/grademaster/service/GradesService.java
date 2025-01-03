@@ -33,8 +33,8 @@ public class GradesService {
         return gradesRepository.getGradesByStudent(conn, id);
     }
     
-    public ArrayList<Grades> getGradesBySubject(String subjectName, YearStudy yearStudy, Period period){
-        return gradesRepository.getGradesBySubject(conn, subjectName, yearStudy, period);
+    public ArrayList<Grades> getGradesBySubject(String subjectName, YearStudy yearStudy, Period period, SectionStudy sectionStudy){
+        return gradesRepository.getGradesBySubject(conn, subjectName, yearStudy, period, sectionStudy);
     }
     
     public void addGrades(Grades grade, String subject){
@@ -47,5 +47,9 @@ public class GradesService {
     
     public void deleteGrades(Grades grade, String subject){
         gradesRepository.deleteGrades(conn, grade, subject);
+    }
+    
+    public ArrayList<Grades> getGradesBySubjectTeacher(String subjectName, YearStudy yearStudy, SectionStudy sectionStudy){
+        return gradesRepository.getGradesBySubjectTeacher(conn, subjectName, yearStudy, sectionStudy);
     }
 }
