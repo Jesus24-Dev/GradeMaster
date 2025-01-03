@@ -4,17 +4,28 @@
  */
 package grademaster.views.panels.content.teacher;
 
+import grademaster.GradeMaster;
+import grademaster.models.YearList;
+import grademaster.utils.StudyEnums;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jesus24-Dev
  */
 public class listTeacherView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form listTeacherView
-     */
+    private StudyEnums.SectionStudy sectionStudy;
+    private StudyEnums.YearStudy yearStudy;
+    
     public listTeacherView() {
         initComponents();
+        fillComboBoxEnums();
+        currentSection();
+        currentYearStudy();
+        fillTable();
     }
 
     /**
@@ -33,6 +44,8 @@ public class listTeacherView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         yearListTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         yearListTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -70,6 +83,12 @@ public class listTeacherView extends javax.swing.JPanel {
         sectionList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sectionListActionPerformed(evt);
+            }
+        });
+
+        yearStudyList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearStudyListActionPerformed(evt);
             }
         });
 
@@ -123,9 +142,61 @@ public class listTeacherView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
-        // TODO add your handling code here:
+        currentSection();
+        fillTable();
     }//GEN-LAST:event_sectionListActionPerformed
 
+    private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
+        currentYearStudy();
+        fillTable();
+    }//GEN-LAST:event_yearStudyListActionPerformed
+
+    
+    private void fillComboBoxEnums(){
+        StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
+        StudyEnums.SectionStudy sectionStudy[] = StudyEnums.SectionStudy.values();
+        String yearStudyArr[] = new String[5];
+        String sectionStudyArr[] = new String[4];
+        
+        for(int i = 0; i < 5; i++){
+            yearStudyArr[i] = yearStudy[i].toString();
+        }
+        for(int i = 0; i < 4; i++){
+            sectionStudyArr[i] = sectionStudy[i].toString();
+        }
+        DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(yearStudyArr);
+        DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(sectionStudyArr);
+        yearStudyList.setModel(model1);
+        sectionList.setModel(model2);
+    }
+    
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) yearListTable.getModel();
+        model.setRowCount(0);
+        
+        ArrayList<YearList> yearList = GradeMaster.yearListController.getList(yearStudy, sectionStudy);
+        
+        if (yearList != null){
+            for (YearList yl : yearList){
+                String yearStudy = yl.getYearStudy().toString();
+                String sectionStudy = yl.getSection().toString();
+                String studentId = yl.getStudentId();
+                String name = yl.getNameStudent();
+                String lastname = yl.getLastnameStudent();
+                
+                Object[] newRow = {yearStudy, sectionStudy, studentId, name, lastname};
+                model.addRow(newRow);
+            }
+        }
+    }
+    
+    private void currentSection(){
+        sectionStudy = StudyEnums.SectionStudy.valueOf((String) sectionList.getSelectedItem());
+    }
+    
+    private void currentYearStudy(){
+        yearStudy = StudyEnums.YearStudy.valueOf((String) yearStudyList.getSelectedItem());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
