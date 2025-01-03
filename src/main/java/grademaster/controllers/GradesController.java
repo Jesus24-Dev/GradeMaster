@@ -50,4 +50,12 @@ public class GradesController {
     public ArrayList<Grades> getGradesBySubjectTeacher(String subjectName, YearStudy yearStudy, SectionStudy sectionStudy){
         return gradesService.getGradesBySubjectTeacher(subjectName, yearStudy, sectionStudy);
     }
+    
+    public ArrayList<Grades> getGradesBySubjectStudent(String id, String subjectName, YearStudy yearStudy, Period period){
+        return gradesService.getGradesBySubjectStudent(id, subjectName, yearStudy, period);
+    }
+            
+    public ArrayList<Grades> getGradesStudent(String id, YearStudy yearStudy, Period period){
+        return gradesService.getGradesStudent(id, yearStudy, period);
+    }
 }

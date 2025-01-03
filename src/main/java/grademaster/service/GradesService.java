@@ -52,4 +52,12 @@ public class GradesService {
     public ArrayList<Grades> getGradesBySubjectTeacher(String subjectName, YearStudy yearStudy, SectionStudy sectionStudy){
         return gradesRepository.getGradesBySubjectTeacher(conn, subjectName, yearStudy, sectionStudy);
     }
+    
+    public ArrayList<Grades> getGradesBySubjectStudent(String id, String subjectName, YearStudy yearStudy, Period period){
+        return gradesRepository.getGradesBySubjectStudent(conn, id, subjectName, yearStudy, period);
+    }
+            
+    public ArrayList<Grades> getGradesStudent(String id, YearStudy yearStudy, Period period){
+        return gradesRepository.getGradesStudent(conn, id, yearStudy, period);
+    }
 }

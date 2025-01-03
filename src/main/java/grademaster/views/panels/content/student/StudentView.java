@@ -7,6 +7,7 @@ package grademaster.views.panels.content.student;
 import grademaster.GradeMaster;
 import grademaster.models.Grades;
 import grademaster.models.Subjects;
+import grademaster.models.YearList;
 import grademaster.utils.StudyEnums;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -20,9 +21,11 @@ public class StudentView extends javax.swing.JPanel {
 
     private StudyEnums.Period period;
     private StudyEnums.YearStudy yearStudy;
+    private String id;
     
     public StudentView() {
         initComponents();
+        setId();
         fillComponents();
         currentPeriod();
         currentYearStudy();
@@ -140,6 +143,10 @@ public class StudentView extends javax.swing.JPanel {
         fillTable();
     }//GEN-LAST:event_subjectListActionPerformed
     
+    private void setId(){
+        id = GradeMaster.user.getId();
+    }
+    
     private void fillComponents(){
         fillComboBoxEnums();
         fillSubjectsComboBox();
@@ -183,10 +190,11 @@ public class StudentView extends javax.swing.JPanel {
         ArrayList<Grades> grades;
         
         if(checkSubject()){
-           grades = GradeMaster.gradesController.getGrades(yearStudy, period);
+           grades = GradeMaster.gradesController.getGradesStudent(id, yearStudy, period);
         } else {
             String subject = (String) subjectList.getSelectedItem();
-            grades = GradeMaster.gradesController.getGradesBySubject(subject, yearStudy, period);
+            YearList student = GradeMaster.yearListController.getStudentFromList(GradeMaster.user.getId());
+            grades = GradeMaster.gradesController.getGradesBySubjectStudent(id, subject, yearStudy, period);
         }
         
         for (Grades grade : grades) {
