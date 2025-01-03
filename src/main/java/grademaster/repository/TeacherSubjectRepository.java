@@ -40,6 +40,36 @@ public class TeacherSubjectRepository {
         }   
     }
     
+    public ArrayList<TeacherSubject> getTeacherBySubject(String id, Connection conn){
+        ArrayList<TeacherSubject> subjects = new ArrayList<>();
+        String sql = """
+                     SELECT a.id, b.namesubject
+                     FROM teacher_subject c
+                     LEFT JOIN users a ON a.id = c.teacherid
+                     LEFT JOIN subject b ON b.id = c.subjectid
+                     WHERE a.id = ?
+                     """;
+        
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){
+            pstm.setString(1, id);
+            try(ResultSet rs = pstm.executeQuery()){
+                if (rs.next()){
+                    do{
+                        TeacherSubject teacher = new TeacherSubject(
+                                rs.getString("id"),
+                                rs.getString("namesubject")
+                        );
+                    subjects.add(teacher);
+                    } while(rs.next());
+                }
+            }          
+            return subjects;
+        } catch (SQLException e){
+            System.out.println(e);
+            return null;
+        } 
+    }
+    
     public void addTeacherForSubject(Connection conn, TeacherSubject teacherSubject){
         String sql = "INSERT INTO teacher_subject (teacherid, subjectid) VALUES " +
                 "(?, (SELECT id FROM subject WHERE namesubject = ?))";

@@ -39,4 +39,8 @@ public class TeacherSubjectController {
         teacherSubjectService.deleteTeacherSubject(teacherSubject);
     }
     
+    public ArrayList<TeacherSubject> getTeacherBySubject(String id){
+        return teacherSubjectService.getTeacherBySubject(id);
+    }
+    
 }
