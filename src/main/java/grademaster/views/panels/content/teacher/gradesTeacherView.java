@@ -42,6 +42,8 @@ public class gradesTeacherView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         studentGrades1.setBackground(new java.awt.Color(255, 255, 255));
         studentGrades1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         studentGrades1.setModel(new javax.swing.table.DefaultTableModel(
@@ -87,8 +89,15 @@ public class gradesTeacherView extends javax.swing.JPanel {
         });
 
         editButton.setText("Edit grade");
+        editButton.setEnabled(false);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setText("Delete grade");
+        deleteButton.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -167,6 +176,10 @@ public class gradesTeacherView extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editButtonActionPerformed
 
     private void fillComboBoxEnums(){
         StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
