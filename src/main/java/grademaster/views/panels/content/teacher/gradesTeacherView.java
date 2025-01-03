@@ -4,6 +4,9 @@
  */
 package grademaster.views.panels.content.teacher;
 
+import grademaster.utils.StudyEnums;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Jesus24-Dev
@@ -15,6 +18,7 @@ public class gradesTeacherView extends javax.swing.JPanel {
      */
     public gradesTeacherView() {
         initComponents();
+        fillComboBoxEnums();
     }
 
     /**
@@ -164,6 +168,23 @@ public class gradesTeacherView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void fillComboBoxEnums(){
+        StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
+        StudyEnums.SectionStudy sectionStudy[] = StudyEnums.SectionStudy.values();
+        String yearStudyArr[] = new String[5];
+        String sectionStudyArr[] = new String[4];
+        
+        for(int i = 0; i < 5; i++){
+            yearStudyArr[i] = yearStudy[i].toString();
+        }
+        for(int i = 0; i < 4; i++){
+            sectionStudyArr[i] = sectionStudy[i].toString();
+        }
+        DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(yearStudyArr);
+        DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(sectionStudyArr);
+        yearStudyList.setModel(model1);
+        sectionList.setModel(model2);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
