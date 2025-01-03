@@ -4,6 +4,8 @@
  */
 package grademaster.views.panels.content.teacher;
 
+import grademaster.GradeMaster;
+
 /**
  *
  * @author Jesus24-Dev
@@ -15,6 +17,7 @@ public class TeacherView extends javax.swing.JPanel {
      */
     public TeacherView() {
         initComponents();
+        fillName();
     }
 
     /**
@@ -61,6 +64,9 @@ public class TeacherView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void fillName(){
+        teacherField.setText(GradeMaster.user.getName() + " " + GradeMaster.user.getLastname());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
