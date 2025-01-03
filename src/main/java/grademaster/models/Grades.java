@@ -15,6 +15,7 @@ public class Grades {
     private String nameStudent;
     private String lastnameStudent;
     private String nameSubject;
+    private SectionStudy section;
     private YearStudy yearStudy;
     private Test activity;
     private Period period;
@@ -38,7 +39,19 @@ public class Grades {
         this.period = period;
         this.grade = grade;
     }
-    
+
+    public Grades(String studentId, String nameStudent, String lastnameStudent, String nameSubject, SectionStudy section, YearStudy yearStudy, Test activity, Period period, float grade) {
+        this.studentId = studentId;
+        this.nameStudent = nameStudent;
+        this.lastnameStudent = lastnameStudent;
+        this.nameSubject = nameSubject;
+        this.section = section;
+        this.yearStudy = yearStudy;
+        this.activity = activity;
+        this.period = period;
+        this.grade = grade;
+    }
+        
     public String getStudentId() {
         return studentId;
     }
@@ -81,6 +94,30 @@ public class Grades {
 
     public String getNameSubject() {
         return nameSubject;
+    }
+
+    public String getNameStudent() {
+        return nameStudent;
+    }
+
+    public void setNameStudent(String nameStudent) {
+        this.nameStudent = nameStudent;
+    }
+
+    public String getLastnameStudent() {
+        return lastnameStudent;
+    }
+
+    public void setLastnameStudent(String lastnameStudent) {
+        this.lastnameStudent = lastnameStudent;
+    }
+
+    public SectionStudy getSection() {
+        return section;
+    }
+
+    public void setSection(SectionStudy section) {
+        this.section = section;
     }
     
     
