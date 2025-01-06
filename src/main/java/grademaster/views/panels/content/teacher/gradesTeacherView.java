@@ -80,6 +80,11 @@ public class gradesTeacherView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        studentGrades1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentGrades1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(studentGrades1);
         if (studentGrades1.getColumnModel().getColumnCount() > 0) {
             studentGrades1.getColumnModel().getColumn(0).setResizable(false);
@@ -109,6 +114,11 @@ public class gradesTeacherView extends javax.swing.JPanel {
 
         deleteButton.setText("Delete grade");
         deleteButton.setEnabled(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         subjectList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,17 +223,33 @@ public class gradesTeacherView extends javax.swing.JPanel {
     private void subjectListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectListActionPerformed
         currentSubject();
         fillTable();
+        deleteButton.setEnabled(false);
+        editButton.setEnabled(false);
     }//GEN-LAST:event_subjectListActionPerformed
 
     private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
         currentYearStudy();
         fillTable();
+        deleteButton.setEnabled(false);
+        editButton.setEnabled(false);
     }//GEN-LAST:event_yearStudyListActionPerformed
 
     private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
         currentSection();
         fillTable();
+        deleteButton.setEnabled(false);
+        editButton.setEnabled(false);
     }//GEN-LAST:event_sectionListActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void studentGrades1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentGrades1MouseClicked
+        int row = studentGrades1.getSelectedRow();
+        deleteButton.setEnabled(true);
+        editButton.setEnabled(true);
+    }//GEN-LAST:event_studentGrades1MouseClicked
 
     private void fillComboBoxEnums(){
         StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
@@ -291,6 +317,7 @@ public class gradesTeacherView extends javax.swing.JPanel {
     private void currentSubject(){
         subjectName = (String) subjectList.getSelectedItem();
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
