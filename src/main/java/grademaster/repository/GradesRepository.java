@@ -131,8 +131,8 @@ public class GradesRepository {
     
     
     public void addGrades(Connection conn, Grades grade, String subject){
-        String sql = "INSERT INTO grades (studentid, subjectid, yearstudy, activity, periodtest, grade, sectionstudy)"
-                + " VALUES (?, (SELECT id FROM subject WHERE namesubject = ?), ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO grades (studentid, subjectid, yearstudy, activity, periodtest, grade)"
+                + " VALUES (?, (SELECT id FROM subject WHERE namesubject = ?), ?, ?, ?, ?)";
         try (PreparedStatement psmt = conn.prepareStatement(sql)){
             psmt.setString(1, grade.getStudentId());
             psmt.setString(2, subject);
