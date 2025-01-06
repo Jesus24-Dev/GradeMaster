@@ -77,6 +77,11 @@ public class AddGradesForm extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        studentList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentListMouseClicked(evt);
+            }
+        });
         studentsList.setViewportView(studentList);
         if (studentList.getColumnModel().getColumnCount() > 0) {
             studentList.getColumnModel().getColumn(0).setResizable(false);
@@ -101,6 +106,8 @@ public class AddGradesForm extends javax.swing.JFrame {
                 sectionListActionPerformed(evt);
             }
         });
+
+        idField.setEditable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -239,6 +246,12 @@ public class AddGradesForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void studentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentListMouseClicked
+        int row = studentList.getSelectedRow();
+        String studentId = (String) studentList.getValueAt(row, 0);
+        idField.setText(studentId);
+    }//GEN-LAST:event_studentListMouseClicked
 
     /**
      * @param args the command line arguments
