@@ -4,6 +4,9 @@
  */
 package grademaster.views.main;
 
+import grademaster.utils.StudyEnums;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Jesus24-Dev
@@ -15,6 +18,7 @@ public class AddGradesForm extends javax.swing.JFrame {
      */
     public AddGradesForm() {
         initComponents();
+        fillComboBoxEnums();
     }
 
     /**
@@ -35,9 +39,9 @@ public class AddGradesForm extends javax.swing.JFrame {
         sectionList = new javax.swing.JComboBox<>();
         idField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        yearStudyListFill = new javax.swing.JComboBox<>();
+        periodList = new javax.swing.JComboBox<>();
+        testList = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -131,22 +135,16 @@ public class AddGradesForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(testList, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(yearStudyListFill, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(periodList, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(13, 13, 13)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
@@ -185,15 +183,15 @@ public class AddGradesForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(yearStudyListFill, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(4, 4, 4)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(periodList, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(testList, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addGap(13, 13, 13)
@@ -269,13 +267,42 @@ public class AddGradesForm extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void fillComboBoxEnums(){
+        StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
+        StudyEnums.SectionStudy sectionStudy[] = StudyEnums.SectionStudy.values();
+        StudyEnums.Period periodStudy[] = StudyEnums.Period.values();
+        StudyEnums.Test testGrade[] = StudyEnums.Test.values();
+        String yearStudyArr[] = new String[5];
+        String sectionStudyArr[] = new String[4];
+        String periodArr[] = new String[3];
+        String testArr[] = new String[5];
+        
+        for(int i = 0; i < 5; i++){
+            yearStudyArr[i] = yearStudy[i].toString();
+            testArr[i] = testGrade[i].toString();
+        }
+        for(int i = 0; i < 4; i++){
+            sectionStudyArr[i] = sectionStudy[i].toString();
+        }
+        for(int i = 0; i < 3; i++){
+            periodArr[i] = periodStudy[i].toString();
+        }
+        
+        DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(yearStudyArr);
+        DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(sectionStudyArr);
+        DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<>(periodArr);
+        DefaultComboBoxModel<String> model4 = new DefaultComboBoxModel<>(testArr);
+        yearStudyList.setModel(model1);
+        yearStudyListFill.setModel(model1);
+        sectionList.setModel(model2);
+        periodList.setModel(model3);
+        testList.setModel(model4);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -286,8 +313,11 @@ public class AddGradesForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> periodList;
     private javax.swing.JComboBox<String> sectionList;
     private javax.swing.JScrollPane studentsList;
+    private javax.swing.JComboBox<String> testList;
     private javax.swing.JComboBox<String> yearStudyList;
+    private javax.swing.JComboBox<String> yearStudyListFill;
     // End of variables declaration//GEN-END:variables
 }
