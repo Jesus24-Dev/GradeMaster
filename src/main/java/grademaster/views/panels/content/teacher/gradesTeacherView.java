@@ -8,6 +8,7 @@ import grademaster.GradeMaster;
 import grademaster.models.Grades;
 import grademaster.models.TeacherSubject;
 import grademaster.utils.StudyEnums;
+import grademaster.utils.WindowFunctions;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -202,7 +203,7 @@ public class gradesTeacherView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        WindowFunctions.startAddGradeForm();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
