@@ -11,6 +11,7 @@ import grademaster.utils.StudyEnums;
 import grademaster.utils.WindowFunctions;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +23,9 @@ public class gradesTeacherView extends javax.swing.JPanel {
     private String subjectName;
     private StudyEnums.SectionStudy sectionStudy;
     private StudyEnums.YearStudy yearStudy;
+    private Grades newGrade;
+    private String subjectSelected;
+    
     public gradesTeacherView() {
         initComponents();
         fillComboBoxEnums();
@@ -242,13 +246,39 @@ public class gradesTeacherView extends javax.swing.JPanel {
     }//GEN-LAST:event_sectionListActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        String message = "Are you sure delete this grade? \nStudent id: " + newGrade.getStudentId() +
+                "\nYear Study: " + newGrade.getYearStudy().toString() +
+                "\nActivity: " + newGrade.getActivity().toString() +
+                "\nPeriod: " + newGrade.getPeriod().toString() +
+                "\nGrade: " +  newGrade.getGrade() +
+                "\nSubject: " + subjectSelected;
         
+        int option = JOptionPane.showConfirmDialog(null, message);
+        if (option == 0){
+            GradeMaster.gradesController.deleteGrade(newGrade.getStudentId(), 
+                    newGrade.getYearStudy(),         
+                    newGrade.getActivity(), 
+                    newGrade.getPeriod(), 
+                    newGrade.getGrade(), 
+                    subjectSelected
+            );
+            JOptionPane.showMessageDialog(null, "School Grade Deleted Succesfully");
+            fillTable();
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void studentGrades1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentGrades1MouseClicked
         int row = studentGrades1.getSelectedRow();
         deleteButton.setEnabled(true);
         editButton.setEnabled(true);
+        subjectSelected = (String) studentGrades1.getValueAt(row, 3);
+        newGrade = new Grades(
+                (String) studentGrades1.getValueAt(row, 0),
+               StudyEnums.YearStudy.valueOf((String) studentGrades1.getValueAt(row, 4)),
+               StudyEnums.Test.valueOf((String) studentGrades1.getValueAt(row, 6)),
+               StudyEnums.Period.valueOf((String) studentGrades1.getValueAt(row, 7)),
+               (Float) studentGrades1.getValueAt(row, 8)
+        );
     }//GEN-LAST:event_studentGrades1MouseClicked
 
     private void fillComboBoxEnums(){
