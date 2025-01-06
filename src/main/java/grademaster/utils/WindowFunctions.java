@@ -1,6 +1,7 @@
 
 package grademaster.utils;
 
+import grademaster.views.main.AddGradesForm;
 import grademaster.views.main.LoginForm;
 import grademaster.views.main.WindowForm;
 import java.awt.BorderLayout;
@@ -11,6 +12,7 @@ public class WindowFunctions {
     private static JPanel content;
     private static JPanel navbar;
     public static LoginForm loginForm; 
+    public static AddGradesForm addGradesForm;
     
     private static void initializeWindowForm() {
         if (windowForm == null) {
@@ -65,6 +67,20 @@ public class WindowFunctions {
          if (loginForm != null) {
             loginForm.dispose();
             loginForm = null;
+        }
+    }
+    
+    public static void startAddGradeForm(){
+        addGradesForm = new AddGradesForm();
+        addGradesForm.setTitle("GRADEMASTER - Add Grades");
+        addGradesForm.setVisible(true);
+        addGradesForm.setLocationRelativeTo(null);
+    }
+    
+    public static void closeAddGradeForm(){
+         if (addGradesForm != null) {
+            addGradesForm.dispose();
+            addGradesForm = null;
         }
     }
 }
