@@ -4,8 +4,12 @@
  */
 package grademaster.views.main;
 
+import grademaster.GradeMaster;
+import grademaster.models.YearList;
 import grademaster.utils.StudyEnums;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +17,15 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class AddGradesForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form editGradesForm
-     */
+    private StudyEnums.SectionStudy sectionStudy;
+    private StudyEnums.YearStudy yearStudy;
+    
     public AddGradesForm() {
         initComponents();
         fillComboBoxEnums();
+        currentSection();
+        currentYearStudy();
+        fillTable();
     }
 
     /**
@@ -32,7 +39,7 @@ public class AddGradesForm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         studentsList = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        studentList = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         yearStudyList = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -54,7 +61,7 @@ public class AddGradesForm extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        studentList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -70,9 +77,9 @@ public class AddGradesForm extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        studentsList.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        studentsList.setViewportView(studentList);
+        if (studentList.getColumnModel().getColumnCount() > 0) {
+            studentList.getColumnModel().getColumn(0).setResizable(false);
         }
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -216,13 +223,13 @@ public class AddGradesForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
-//        currentYearStudy();
-//        fillTable();
+        currentYearStudy();
+        fillTable();
     }//GEN-LAST:event_yearStudyListActionPerformed
 
     private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
-//        currentSection();
-//        fillTable();
+        currentSection();
+        fillTable();
     }//GEN-LAST:event_sectionListActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -299,6 +306,32 @@ public class AddGradesForm extends javax.swing.JFrame {
         periodList.setModel(model3);
         testList.setModel(model4);
     }
+    
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) studentList.getModel();
+        model.setRowCount(0);
+        
+        ArrayList<YearList> yearList = GradeMaster.yearListController.getList(yearStudy, sectionStudy);
+        
+        if (yearList != null){
+            for (YearList yl : yearList){
+                String studentId = yl.getStudentId();
+                String name = yl.getNameStudent();
+                String lastname = yl.getLastnameStudent();
+                
+                Object[] newRow = {studentId, name, lastname};
+                model.addRow(newRow);
+            }
+        }
+    }
+    
+    private void currentSection(){
+        sectionStudy = StudyEnums.SectionStudy.valueOf((String) sectionList.getSelectedItem());
+    }
+    
+    private void currentYearStudy(){
+        yearStudy = StudyEnums.YearStudy.valueOf((String) yearStudyList.getSelectedItem());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField idField;
@@ -311,10 +344,10 @@ public class AddGradesForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> periodList;
     private javax.swing.JComboBox<String> sectionList;
+    private javax.swing.JTable studentList;
     private javax.swing.JScrollPane studentsList;
     private javax.swing.JComboBox<String> testList;
     private javax.swing.JComboBox<String> yearStudyList;
