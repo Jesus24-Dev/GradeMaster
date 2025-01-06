@@ -32,9 +32,22 @@ public class GradesController {
         return gradesService.getGradesBySubject(subjectName, yearStudy, period, section);
     }
     
-    public void createGrade(String studentId, YearStudy yearStudy, Test activity, Period period, float gradeN, String nameSubject){
+    public int createGrade(String studentId, YearStudy yearStudy, Test activity, Period period, float gradeN, String nameSubject){
         Grades grade = new Grades(studentId, yearStudy, activity, period,gradeN);
-        gradesService.addGrades(grade, nameSubject);
+        
+        try{
+            if(studentId == null){
+                throw new RuntimeException("need id");
+            }
+            gradesService.addGrades(grade, nameSubject);
+            return 1;
+        } catch (RuntimeException e){
+            if (e.getMessage().equals("need id")){
+                return -1;
+            }
+            System.out.println(e.getMessage());
+            return 0;
+        }        
     }
     
     public void updateGrade(String studentId, YearStudy yearStudy, Test activity, Period period, float gradeN, String nameSubject){
