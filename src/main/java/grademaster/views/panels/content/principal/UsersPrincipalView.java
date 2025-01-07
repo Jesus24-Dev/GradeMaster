@@ -4,17 +4,26 @@
  */
 package grademaster.views.panels.content.principal;
 
+import grademaster.GradeMaster;
+import grademaster.models.Users;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jesus24-Dev
  */
 public class UsersPrincipalView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form UsersPrincipalView
-     */
+    boolean status = true;
+    int rol;
+    
     public UsersPrincipalView() {
         initComponents();
+        setRol();
+        fillTable();
     }
 
     /**
@@ -36,7 +45,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         addUserButton = new javax.swing.JButton();
         userToInactiveButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        usersTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -46,7 +55,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         jLabel1.setText("Viewing Now");
 
         userRol.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        userRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Students", "Teachers", " " }));
+        userRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Students", "Teachers" }));
         userRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userRolActionPerformed(evt);
@@ -88,7 +97,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         userToInactiveButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         userToInactiveButton.setText("Inactive user");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -104,7 +113,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(usersTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,14 +130,14 @@ public class UsersPrincipalView extends javax.swing.JPanel {
                             .addComponent(userRol, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(statusUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
-                                .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
+                                .addGap(40, 40, 40)
+                                .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
                                 .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(29, 29, 29)
                                 .addComponent(userToInactiveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(userID, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,11 +173,13 @@ public class UsersPrincipalView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userRolActionPerformed
-        // TODO add your handling code here:
+        setRol();
+        fillTable();
     }//GEN-LAST:event_userRolActionPerformed
 
     private void statusUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusUserActionPerformed
-        // TODO add your handling code here:
+        status = !status;
+        fillTable();
     }//GEN-LAST:event_statusUserActionPerformed
 
     private void userIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDActionPerformed
@@ -176,21 +187,58 @@ public class UsersPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_userIDActionPerformed
 
     private void searchByIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByIDActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_searchByIDActionPerformed
 
+    private void fillTable(){
+        ArrayList<Users> users;
+        if(rol == 3){
+            users = GradeMaster.userController.getStudents(status);
+        } else {
+            users = GradeMaster.userController.getTeachers(status);
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) usersTable.getModel();
+        model.setRowCount(0);
+        
+        for(Users u : users){
+            String id = u.getId();
+            String name = u.getName();
+            String lastname = u.getLastname();
+            Date birthday = u.getBirthday();
+            String address = u.getAddress();
+            String gender = u.getGender();
+            String status = u.isStatus() ? "ACTIVE" : "INACTIVE";
+            
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = format.format(birthday);
+            
+            Object[] newRow = {id, name, lastname, dateString, address, gender, status};
+            model.addRow(newRow);
+        }
+    }
+    
+    private void setRol(){
+        String rolSelected = (String) userRol.getSelectedItem();        
+        if (rolSelected.equals("Students")){
+            rol = 3;
+        } else {
+            rol = 2;
+        }
+        fillTable();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton searchByID;
     private javax.swing.JCheckBox statusUser;
     private javax.swing.JButton updateUserButton;
     private javax.swing.JTextField userID;
     private javax.swing.JComboBox<String> userRol;
     private javax.swing.JButton userToInactiveButton;
+    private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
 }
