@@ -20,6 +20,8 @@ public class UsersPrincipalView extends javax.swing.JPanel {
 
     boolean status = true;
     int rol;
+    String userIdSelected;
+    boolean statusSelected;
     
     public UsersPrincipalView() {
         initComponents();
@@ -42,7 +44,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         userID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         searchByID = new javax.swing.JButton();
-        updateUserButton = new javax.swing.JButton();
+        editUserButton = new javax.swing.JButton();
         addUserButton = new javax.swing.JButton();
         userToInactiveButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -89,14 +91,21 @@ public class UsersPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        updateUserButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        updateUserButton.setText("Update user");
+        editUserButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        editUserButton.setText("Edit user");
+        editUserButton.setEnabled(false);
 
         addUserButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         addUserButton.setText("Register new User");
 
         userToInactiveButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        userToInactiveButton.setText("Inactive user");
+        userToInactiveButton.setText("Change status");
+        userToInactiveButton.setEnabled(false);
+        userToInactiveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userToInactiveButtonActionPerformed(evt);
+            }
+        });
 
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,6 +121,11 @@ public class UsersPrincipalView extends javax.swing.JPanel {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        usersTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usersTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(usersTable);
@@ -134,7 +148,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
                                 .addGap(40, 40, 40)
                                 .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
-                                .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(editUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(userToInactiveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
@@ -161,7 +175,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(statusUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userToInactiveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -176,11 +190,15 @@ public class UsersPrincipalView extends javax.swing.JPanel {
     private void userRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userRolActionPerformed
         setRol();
         fillTable();
+        editUserButton.setEnabled(false);
+        userToInactiveButton.setEnabled(false);
     }//GEN-LAST:event_userRolActionPerformed
 
     private void statusUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusUserActionPerformed
         status = !status;
         fillTable();
+        editUserButton.setEnabled(false);
+        userToInactiveButton.setEnabled(false);
     }//GEN-LAST:event_statusUserActionPerformed
 
     private void userIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDActionPerformed
@@ -188,6 +206,8 @@ public class UsersPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_userIDActionPerformed
 
     private void searchByIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByIDActionPerformed
+        editUserButton.setEnabled(false);
+        userToInactiveButton.setEnabled(false);
         String id = userID.getText();
         if(id.equals("")){
             JOptionPane.showMessageDialog(null, "This field can't be empty");
@@ -214,6 +234,21 @@ public class UsersPrincipalView extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_searchByIDActionPerformed
+
+    private void usersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersTableMouseClicked
+        editUserButton.setEnabled(true);
+        userToInactiveButton.setEnabled(true);
+        int row = usersTable.getSelectedRow();
+        userIdSelected = (String) usersTable.getValueAt(row, 0);
+        String userStatus = (String) usersTable.getValueAt(row, 6);
+        
+        statusSelected = userStatus.equals("ACTIVE") ? true : false;
+    }//GEN-LAST:event_usersTableMouseClicked
+
+    private void userToInactiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userToInactiveButtonActionPerformed
+        GradeMaster.userController.deleteUser(userIdSelected, !statusSelected);
+        JOptionPane.showMessageDialog(null, "Status updated to " + !statusSelected);
+    }//GEN-LAST:event_userToInactiveButtonActionPerformed
 
     private void fillTable(){
         ArrayList<Users> users;
@@ -255,12 +290,12 @@ public class UsersPrincipalView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserButton;
+    private javax.swing.JButton editUserButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchByID;
     private javax.swing.JCheckBox statusUser;
-    private javax.swing.JButton updateUserButton;
     private javax.swing.JTextField userID;
     private javax.swing.JComboBox<String> userRol;
     private javax.swing.JButton userToInactiveButton;
