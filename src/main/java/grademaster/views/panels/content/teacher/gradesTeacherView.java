@@ -221,7 +221,29 @@ public class gradesTeacherView extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+           float gradeValue = Float.parseFloat(JOptionPane.showInputDialog("Indicates the new school grade"));
+           if (gradeValue < 1 || gradeValue > 20){
+               throw new RuntimeException();
+           }
+           GradeMaster.gradesController.updateGrade(
+                   newGrade.getStudentId(), 
+                   newGrade.getYearStudy(),         
+                   newGrade.getActivity(),
+                   newGrade.getPeriod(),
+                   gradeValue,
+                subjectSelected
+           );
+           JOptionPane.showMessageDialog(null, "School Grade update succesfully!");
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Grade field need to be a number");
+        } catch(NullPointerException e){
+            
+        } catch(RuntimeException e){
+            JOptionPane.showMessageDialog(null, "The school grade must be between values 1 and 20");
+        }
+        
+        
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void subjectListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectListActionPerformed
