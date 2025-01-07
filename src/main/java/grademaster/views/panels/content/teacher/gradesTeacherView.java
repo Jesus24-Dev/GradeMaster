@@ -6,6 +6,7 @@ package grademaster.views.panels.content.teacher;
 
 import grademaster.GradeMaster;
 import grademaster.models.Grades;
+import grademaster.models.Subjects;
 import grademaster.models.TeacherSubject;
 import grademaster.utils.StudyEnums;
 import grademaster.utils.WindowFunctions;
@@ -323,7 +324,7 @@ public class gradesTeacherView extends javax.swing.JPanel {
     
     private void fillSubjectComboBox(){
         ArrayList<TeacherSubject> subjects = GradeMaster.teacherSubjectController.getTeacherBySubject(GradeMaster.user.getId());
-        if (subjects != null){
+        if (!subjects.isEmpty()){
             String subjectArr[] = new String[subjects.size()];
             int i = 0;
             
@@ -333,7 +334,18 @@ public class gradesTeacherView extends javax.swing.JPanel {
             }
             DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(subjectArr);
             subjectList.setModel(model1);
-        } 
+        } else if(subjects.isEmpty()  && GradeMaster.user.getRole() == 1) {
+            ArrayList<Subjects> subjects2  = GradeMaster.subjectController.getSubjects();
+            String subjectArr[] = new String[subjects2.size() + 1];
+            int i = 1;
+            subjectArr[0] = "ALL SUBJECTS";
+            for(Subjects s : subjects2){
+                subjectArr[i] = s.getName();
+                i++;
+            }
+            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(subjectArr);
+            subjectList.setModel(model);
+        }        
     }
     
     private void fillTable(){
