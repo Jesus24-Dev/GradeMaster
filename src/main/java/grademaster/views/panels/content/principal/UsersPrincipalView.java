@@ -9,6 +9,7 @@ import grademaster.models.Users;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -187,7 +188,31 @@ public class UsersPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_userIDActionPerformed
 
     private void searchByIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByIDActionPerformed
-        
+        String id = userID.getText();
+        if(id.equals("")){
+            JOptionPane.showMessageDialog(null, "This field can't be empty");
+        } else {
+            Users user = GradeMaster.userController.getUser(id);
+            if(user == null){
+                JOptionPane.showMessageDialog(null, "Wrong ID or User doesn't exist");
+            } else {
+                DefaultTableModel model = (DefaultTableModel) usersTable.getModel();
+                model.setRowCount(0);
+                String idUser = user.getId();
+                String name = user.getName();
+                String lastname = user.getLastname();
+                Date birthday = user.getBirthday();
+                String address = user.getAddress();
+                String gender = user.getGender();
+                String status = user.isStatus() ? "ACTIVE" : "INACTIVE";
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String dateString = format.format(birthday);
+
+                Object[] newRow = {id, name, lastname, dateString, address, gender, status};
+                model.addRow(newRow);
+            }
+        }
     }//GEN-LAST:event_searchByIDActionPerformed
 
     private void fillTable(){
