@@ -21,9 +21,14 @@ public class UsersController {
         this.usersService = usersService;
     }
     
-    public void createUser(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role){
+    public int createUser(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role){
         Users user = new Users(id, name, lastname, password, birthday, address, gender, role, true);
-        usersService.createUser(user);
+        try {
+            usersService.createUser(user);
+            return 1;
+        } catch (RuntimeException e){
+            return -1;
+        }        
     }
     
     public ArrayList<Users> getStudents(boolean status){
