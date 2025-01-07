@@ -5,7 +5,11 @@
 package grademaster.views.panels.navbar;
 
 import grademaster.utils.WindowFunctions;
-import grademaster.views.panels.content.principal.*;
+import grademaster.views.panels.content.principal.SubjectsPrincipalView;
+import grademaster.views.panels.content.principal.UsersPrincipalView;
+import grademaster.views.panels.content.principal.YearListPrincipalView;
+import grademaster.views.panels.content.teacher.gradesTeacherView;
+
 
 /**
  *
@@ -127,8 +131,8 @@ public class PrincipalNavbar extends javax.swing.JPanel {
     }//GEN-LAST:event_usersPrincipalButtonActionPerformed
 
     private void gradePrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradePrincipalButtonActionPerformed
-        gradesPrincipalView grades_principalView = new gradesPrincipalView();
-        WindowFunctions.changeContent(grades_principalView);
+        gradesTeacherView grades_teacher_view = new gradesTeacherView();
+        WindowFunctions.changeContent(grades_teacher_view);
     }//GEN-LAST:event_gradePrincipalButtonActionPerformed
 
     private void listPrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPrincipalButtonActionPerformed
