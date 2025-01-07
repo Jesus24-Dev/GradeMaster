@@ -4,8 +4,11 @@
  */
 package grademaster.views.main;
 
-import java.util.Date;
+import grademaster.GradeMaster;
+import java.sql.Date;
+import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,10 +64,12 @@ public class usersForm extends javax.swing.JFrame {
         closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         nameEvent.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        nameEvent.setText("REGISTER NEW USER");
         nameEvent.setToolTipText("");
         nameEvent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -126,8 +131,18 @@ public class usersForm extends javax.swing.JFrame {
         statusList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVE", "INACTIVE" }));
 
         saveButton.setText("Save form");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         closeButton.setText("Close");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -275,6 +290,53 @@ public class usersForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idFieldActionPerformed
 
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        registerUser();
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    
+    private void registerUser(){
+        String id = idField.getText();
+        String name = nameField.getText().toUpperCase();
+        String lastname = lastnameField.getText().toUpperCase();
+        String password = passwordField.getText();
+        String address = addressField.getText().toUpperCase();       
+        String day = (String) dayList.getSelectedItem();
+        String month = (String) monthList.getSelectedItem();
+        String year = (String) yearList.getSelectedItem();       
+        String gender = (String) genderList.getSelectedItem();
+        String role = (String) roleList.getSelectedItem();
+        String status = (String) statusList.getSelectedItem();
+        
+        
+        
+        Date birthday = new Date(Integer.parseInt(year) + 1900, Integer.parseInt(month) - 1, Integer.parseInt(day));
+        int roleInt = role.equals("STUDENT") ? 3 : 2;
+        boolean statusBoolean = status.equals("ACTIVE");
+        
+        if (id.equals("") || name.equals("") || lastname.equals("") || password.equals("") || address.equals("")){
+            showMessages(5);
+        } else {
+            int value = GradeMaster.userController.createUser(id, name, lastname, password, birthday, status, gender, roleInt);
+            showMessages(value);
+        }
+        
+        
+    }
+    
+    public void showMessages(int value){
+        if(value == 1){
+            JOptionPane.showMessageDialog(null, "User created succesfully.");
+        } else if (value == -1){
+            JOptionPane.showMessageDialog(null, "This ID already exists.");
+        } else if (value == 5){
+            JOptionPane.showMessageDialog(null, "All fields are required.");
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -312,8 +374,8 @@ public class usersForm extends javax.swing.JFrame {
     
     public void fillDays(){
         String days[] = new String[31];
-        for (int i = 1; i <= 31; i++){
-            days[i] = Integer.toString(i);
+        for (int i = 0; i < 31; i++){
+            days[i] = Integer.toString(i + 1);
         }
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(days);
         dayList.setModel(model);
@@ -321,16 +383,16 @@ public class usersForm extends javax.swing.JFrame {
     
     public void fillMonths(){
         String days[] = new String[12];
-        for (int i = 1; i <= 12; i++){
-            days[i] = Integer.toString(i);
+        for (int i = 0; i < 12; i++){
+            days[i] = Integer.toString(i + 1);
         }
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(days);
         monthList.setModel(model);
     }
     
     public void fillYears(){       
-        Date currentDate = new Date();
-        int currentYear = currentDate.getYear() + 1900;
+         LocalDate currentDate = LocalDate.now();
+        int currentYear = currentDate.getYear();
         Integer[] years = new Integer[(currentYear - 1900) + 1];
         int currentYearInt = currentYear;
         for (int i = 0; i < years.length; i++) {
