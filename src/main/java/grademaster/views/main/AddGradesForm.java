@@ -238,11 +238,13 @@ public class AddGradesForm extends javax.swing.JFrame {
 
     private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
         currentYearStudy();
+        idField.setText("");
         fillTable();
     }//GEN-LAST:event_yearStudyListActionPerformed
 
     private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
         currentSection();
+        idField.setText("");
         fillTable();
     }//GEN-LAST:event_sectionListActionPerformed
 
