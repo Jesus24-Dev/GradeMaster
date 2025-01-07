@@ -35,6 +35,8 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
         addSubjectButton = new javax.swing.JButton();
         deleteSubjectButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         subjectTeacherTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

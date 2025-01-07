@@ -36,6 +36,8 @@ public class YearListPrincipalView extends javax.swing.JPanel {
         editListButton = new javax.swing.JButton();
         deleteFromListButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         yearListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
