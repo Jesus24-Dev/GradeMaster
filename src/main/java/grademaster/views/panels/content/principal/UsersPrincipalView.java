@@ -6,6 +6,7 @@ package grademaster.views.panels.content.principal;
 
 import grademaster.GradeMaster;
 import grademaster.models.Users;
+import grademaster.utils.WindowFunctions;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -97,6 +98,11 @@ public class UsersPrincipalView extends javax.swing.JPanel {
 
         addUserButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         addUserButton.setText("Register new User");
+        addUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserButtonActionPerformed(evt);
+            }
+        });
 
         userToInactiveButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         userToInactiveButton.setText("Change status");
@@ -249,6 +255,10 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         GradeMaster.userController.deleteUser(userIdSelected, !statusSelected);
         JOptionPane.showMessageDialog(null, "Status updated to " + !statusSelected);
     }//GEN-LAST:event_userToInactiveButtonActionPerformed
+
+    private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
+        WindowFunctions.startUserForm();
+    }//GEN-LAST:event_addUserButtonActionPerformed
 
     private void fillTable(){
         ArrayList<Users> users;
