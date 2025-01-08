@@ -4,17 +4,29 @@
  */
 package grademaster.views.panels.content.principal;
 
+import grademaster.GradeMaster;
+import grademaster.models.YearList;
+import grademaster.utils.StudyEnums;
+import grademaster.utils.WindowFunctions;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jesus24-Dev
  */
 public class YearListPrincipalView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form YearListPrincipalView
-     */
+    private StudyEnums.YearStudy yearStudy;
+    private StudyEnums.SectionStudy sectionStudy;
+    
     public YearListPrincipalView() {
         initComponents();
+        fillComboBoxEnums();
+        currentSectionStudy();
+        currentYearStudy();
+        fillTable();
     }
 
     /**
@@ -68,6 +80,18 @@ public class YearListPrincipalView extends javax.swing.JPanel {
             yearListTable.getColumnModel().getColumn(2).setResizable(false);
             yearListTable.getColumnModel().getColumn(4).setResizable(false);
         }
+
+        yearStudyList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearStudyListActionPerformed(evt);
+            }
+        });
+
+        sectionList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sectionListActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -157,7 +181,7 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addStudentToListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentToListButtonActionPerformed
-        // TODO add your handling code here:
+        WindowFunctions.startListForm();
     }//GEN-LAST:event_addStudentToListButtonActionPerformed
 
     private void deleteFromListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFromListButtonActionPerformed
@@ -168,6 +192,61 @@ public class YearListPrincipalView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_editListButtonActionPerformed
 
+    private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
+        currentYearStudy();
+        fillTable();
+    }//GEN-LAST:event_yearStudyListActionPerformed
+
+    private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
+        currentSectionStudy();
+        fillTable();
+    }//GEN-LAST:event_sectionListActionPerformed
+    
+    private void fillComboBoxEnums(){
+        StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
+        StudyEnums.SectionStudy sectionStudy[] = StudyEnums.SectionStudy.values();
+        String yearStudyArr[] = new String[5];
+        String sectionStudyArr[] = new String[4];
+        
+        for(int i = 0; i < 5; i++){
+            yearStudyArr[i] = yearStudy[i].toString();
+        }
+        for(int i = 0; i < 4; i++){
+            sectionStudyArr[i] = sectionStudy[i].toString();
+        }
+        DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(yearStudyArr);
+        DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(sectionStudyArr);
+        yearStudyList.setModel(model1);
+        sectionList.setModel(model2);
+    }
+    
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) yearListTable.getModel();
+        model.setRowCount(0);
+        
+        ArrayList<YearList> yearList = GradeMaster.yearListController.getList(yearStudy, sectionStudy);
+        
+        if (yearList != null){
+            for (YearList yl : yearList){
+                String yearStudy = yl.getYearStudy().toString();
+                String sectionStudy = yl.getSection().toString();
+                String studentId = yl.getStudentId();
+                String name = yl.getNameStudent();
+                String lastname = yl.getLastnameStudent();
+                
+                Object[] newRow = {yearStudy, sectionStudy, studentId, name, lastname};
+                model.addRow(newRow);
+            }
+        }
+    }
+    
+    private void currentSectionStudy(){
+        sectionStudy = StudyEnums.SectionStudy.valueOf((String) sectionList.getSelectedItem());
+    }
+    
+    private void currentYearStudy(){
+        yearStudy = StudyEnums.YearStudy.valueOf((String) yearStudyList.getSelectedItem());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addStudentToListButton;
