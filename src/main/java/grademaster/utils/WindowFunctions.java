@@ -2,6 +2,7 @@
 package grademaster.utils;
 
 import grademaster.views.main.AddGradesForm;
+import grademaster.views.main.ListForm;
 import grademaster.views.main.LoginForm;
 import grademaster.views.main.WindowForm;
 import grademaster.views.main.usersForm;
@@ -15,6 +16,7 @@ public class WindowFunctions {
     public static LoginForm loginForm; 
     public static AddGradesForm addGradesForm;
     public static usersForm users_form;
+    public static ListForm listForm;
     
     private static void initializeWindowForm() {
         if (windowForm == null) {
@@ -99,5 +101,12 @@ public class WindowFunctions {
             users_form.dispose();
             users_form = null;
         }
+    }
+    
+    public static void startListForm(){
+        listForm = new ListForm();
+        listForm.setTitle("GRADEMASTER - List Form");
+        listForm.setVisible(true);
+        listForm.setLocationRelativeTo(null);
     }
 }
