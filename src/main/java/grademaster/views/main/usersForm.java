@@ -317,8 +317,13 @@ public class usersForm extends javax.swing.JFrame {
         int roleInt = role.equals("STUDENT") ? 3 : 2;
         boolean statusBoolean = status.equals("ACTIVE");
         
+         
+        
         if (id.equals("") || name.equals("") || lastname.equals("") || password.equals("") || address.equals("")){
             showMessages(5);
+            
+        } else if(!checkDate(day, month)){
+            showMessages(6);
         } else {
             if(isRegister){
                 int value = GradeMaster.userController.createUser(id, name, lastname, password, birthday, address, gender, roleInt);
@@ -343,7 +348,9 @@ public class usersForm extends javax.swing.JFrame {
         } else if(value == 2){
             JOptionPane.showMessageDialog(null, "User edited succesfully");
         } else if (value == 3){
-            JOptionPane.showMessageDialog(null, "error");
+            JOptionPane.showMessageDialog(null, "This ID already exists.");
+        } else if (value == 6){
+            JOptionPane.showMessageDialog(null, "Please enter a valid date");
         }
     }
     /**
@@ -441,6 +448,28 @@ public class usersForm extends javax.swing.JFrame {
         this.oldId = oldId;
     }
 
+    
+    private boolean checkDate(String day, String month){
+                
+        boolean itsOkay = true;
+            
+        switch(month){
+            case "2":
+                if (day.equals("30") || day.equals("31")){
+                    itsOkay = false;
+                }
+                break;
+            case "4":
+            case "6":
+            case "9":
+            case "11":
+                if (day.equals("31")){
+                    itsOkay = false;
+                }
+        }
+        
+        return itsOkay;
+    }
     
     
 
