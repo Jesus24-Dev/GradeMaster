@@ -24,6 +24,12 @@ public class YearList {
         this.section = section;
     }
 
+    public YearList(String studentId, String nameStudent, String lastnameStudent) {
+        this.studentId = studentId;
+        this.nameStudent = nameStudent;
+        this.lastnameStudent = lastnameStudent;
+    }       
+
     public YearList(String studentId, YearStudy yearStudy, SectionStudy section, String nameStudent, String lastnameStudent) {
         this.studentId = studentId;
         this.yearStudy = yearStudy;

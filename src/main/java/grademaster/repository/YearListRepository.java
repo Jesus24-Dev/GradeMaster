@@ -102,4 +102,32 @@ public class YearListRepository {
         } 
         return null;
     }
+    
+    public ArrayList<YearList> getStudentsWithoutList(Connection conn){
+        ArrayList<YearList> list = new ArrayList<>();
+        String sql = """
+                     SELECT u.id, u.name, u.lastname
+                     FROM users u
+                     LEFT JOIN yearlist yl ON u.id = yl.studentid
+                     WHERE yl.studentid IS NULL AND u.rol = 3""";
+        
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){                       
+            try(ResultSet rs = pstm.executeQuery()){
+                if(rs.next()){
+                    do {
+                        YearList student = new YearList(
+                                rs.getString("id"),                            
+                                rs.getString("name"),
+                                rs.getString("lastname")
+                        );
+                        list.add(student);
+                    } while (rs.next());
+                }
+            }           
+            return list;
+        } catch (SQLException e){
+            System.out.println(e);
+            return null;
+        }      
+    }
 }

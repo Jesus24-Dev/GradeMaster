@@ -43,4 +43,8 @@ public class YearListService {
     public YearList getStudentFromList(String id){
         return yearListRepository.getStudentFromList(conn, id);
     }
+    
+    public ArrayList<YearList> getStudentsWithoutList(){
+        return yearListRepository.getStudentsWithoutList(conn);
+    }
 }

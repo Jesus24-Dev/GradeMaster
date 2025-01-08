@@ -42,4 +42,8 @@ public class YearListController {
     public YearList getStudentFromList(String id){
        return yearListService.getStudentFromList(id);
     }
+    
+    public ArrayList<YearList> getStudentsWithoutList(){
+        return yearListService.getStudentsWithoutList();
+    }
 }
