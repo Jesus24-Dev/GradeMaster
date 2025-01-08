@@ -91,6 +91,7 @@ public class WindowFunctions {
         users_form.setTitle("GRADEMASTER - Users Form");
         users_form.setVisible(true);
         users_form.setLocationRelativeTo(null);
+        users_form.setIsRegister(true);
     }
     
     public static void closeUserForm(){
