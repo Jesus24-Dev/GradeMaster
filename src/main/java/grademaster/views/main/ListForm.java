@@ -9,6 +9,7 @@ import grademaster.models.YearList;
 import grademaster.utils.StudyEnums;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -203,7 +204,13 @@ public class ListForm extends javax.swing.JFrame {
     }//GEN-LAST:event_usersTableMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        String id = idField.getText();
+        String year = (String) yearStudyList.getSelectedItem();
+        String section = (String) sectionList.getSelectedItem();
+        
+        GradeMaster.yearListController.addStudentToList(id, StudyEnums.YearStudy.valueOf(year), StudyEnums.SectionStudy.valueOf(section));
+        JOptionPane.showMessageDialog(null, "Student added to list succesfully!");
+        fillTable();
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void fillComboBoxEnums(){
