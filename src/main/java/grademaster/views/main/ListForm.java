@@ -23,8 +23,6 @@ public class ListForm extends javax.swing.JFrame {
     public ListForm() {
         initComponents();
         fillComboBoxEnums();
-        currentSectionStudy();
-        currentYearStudy();
         fillTable();
     }
 
@@ -187,13 +185,11 @@ public class ListForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
-        currentYearStudy();
-        fillTable();
+             
     }//GEN-LAST:event_yearStudyListActionPerformed
 
     private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
-        currentSectionStudy();
-        fillTable();
+      
     }//GEN-LAST:event_sectionListActionPerformed
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
@@ -232,7 +228,7 @@ public class ListForm extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) usersTable.getModel();
         model.setRowCount(0);
         
-        ArrayList<YearList> yearList = GradeMaster.yearListController.getList(yearStudy, sectionStudy);
+        ArrayList<YearList> yearList = GradeMaster.yearListController.getStudentsWithoutList();
         
         if (yearList != null){
             for (YearList yl : yearList){
@@ -246,13 +242,6 @@ public class ListForm extends javax.swing.JFrame {
         }
     }
     
-    private void currentSectionStudy(){
-        sectionStudy = StudyEnums.SectionStudy.valueOf((String) sectionList.getSelectedItem());
-    }
-    
-    private void currentYearStudy(){
-        yearStudy = StudyEnums.YearStudy.valueOf((String) yearStudyList.getSelectedItem());
-    }
     /**
      * @param args the command line arguments
      */
