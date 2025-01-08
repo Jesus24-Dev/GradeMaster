@@ -351,7 +351,14 @@ public class gradesTeacherView extends javax.swing.JPanel {
     private void fillTable(){
         DefaultTableModel model = (DefaultTableModel) studentGrades1.getModel();
         model.setRowCount(0);
-        ArrayList<Grades> grades = GradeMaster.gradesController.getGradesBySubjectTeacher(subjectName, yearStudy, sectionStudy);
+        ArrayList<Grades> grades; 
+        
+        if(subjectName.equals("ALL SUBJECTS")){
+            grades = GradeMaster.gradesController.getGradesPrincipal(yearStudy, sectionStudy);
+        } else {
+            grades = GradeMaster.gradesController.getGradesBySubjectTeacher(subjectName, yearStudy, sectionStudy);
+        }
+        
         if(grades != null){       
             for (Grades grade : grades) {
                 String id = grade.getStudentId();
