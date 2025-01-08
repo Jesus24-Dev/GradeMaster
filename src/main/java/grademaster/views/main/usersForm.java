@@ -16,9 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class usersForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form usersForm
-     */
+    private boolean isRegister;
+    
     public usersForm() {
         initComponents();
         fillDays();
@@ -64,12 +63,14 @@ public class usersForm extends javax.swing.JFrame {
         closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         nameEvent.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        nameEvent.setText("REGISTER NEW USER");
+        nameEvent.setForeground(new java.awt.Color(0, 0, 0));
+        nameEvent.setText("USERS FORM");
         nameEvent.setToolTipText("");
         nameEvent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -149,7 +150,7 @@ public class usersForm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(nameEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(237, 237, 237))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -169,20 +170,19 @@ public class usersForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(addressField)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(dayList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(monthList, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(yearList, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(dayList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(monthList, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7)
+                                        .addComponent(yearList, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,16 +206,16 @@ public class usersForm extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(195, Short.MAX_VALUE)
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
                         .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(nameEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addGap(58, 58, 58)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
@@ -243,7 +243,7 @@ public class usersForm extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel9))
@@ -269,7 +269,7 @@ public class usersForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -311,30 +311,35 @@ public class usersForm extends javax.swing.JFrame {
         String gender = (String) genderList.getSelectedItem();
         String role = (String) roleList.getSelectedItem();
         String status = (String) statusList.getSelectedItem();
-        
-        
-        
-        Date birthday = new Date(Integer.parseInt(year) + 1900, Integer.parseInt(month) - 1, Integer.parseInt(day));
+                        
+        Date birthday = new Date(Integer.parseInt(year) - 1900, Integer.parseInt(month) - 1, Integer.parseInt(day));
         int roleInt = role.equals("STUDENT") ? 3 : 2;
         boolean statusBoolean = status.equals("ACTIVE");
         
         if (id.equals("") || name.equals("") || lastname.equals("") || password.equals("") || address.equals("")){
             showMessages(5);
         } else {
-            int value = GradeMaster.userController.createUser(id, name, lastname, password, birthday, status, gender, roleInt);
-            showMessages(value);
+            if(isRegister){
+                int value = GradeMaster.userController.createUser(id, name, lastname, password, birthday, status, gender, roleInt);
+                showMessages(value);
+            } else {
+                GradeMaster.userController.updateUser(id, name, lastname, password, birthday, address, gender, roleInt, statusBoolean);
+            }
+            
         }
         
         
     }
     
-    public void showMessages(int value){
+    private void showMessages(int value){
         if(value == 1){
             JOptionPane.showMessageDialog(null, "User created succesfully.");
         } else if (value == -1){
             JOptionPane.showMessageDialog(null, "This ID already exists.");
         } else if (value == 5){
             JOptionPane.showMessageDialog(null, "All fields are required.");
+        } else if(value == 2){
+            JOptionPane.showMessageDialog(null, "User edited succesfully");
         }
     }
     /**
@@ -400,6 +405,36 @@ public class usersForm extends javax.swing.JFrame {
             yearList.addItem(Integer.toString(years[i]));
         }
     }
+    
+    public void fillFields(String id, String name, String lastname, String password, String address, Date birthday, String gender, int role, boolean status){
+                
+        idField.setText(id.toUpperCase());
+        nameField.setText(name.toUpperCase());
+        lastnameField.setText(lastname.toUpperCase());
+        passwordField.setText(password);
+        addressField.setText(address.toUpperCase());  
+        
+        LocalDate birthdayLocalDate = birthday.toLocalDate();
+        
+        int day = birthdayLocalDate.getDayOfMonth();
+        int month = birthdayLocalDate.getMonthValue();
+        int year = birthdayLocalDate.getYear();
+        
+        dayList.setSelectedItem(String.valueOf(day));
+        monthList.setSelectedItem(String.valueOf(month));
+        yearList.setSelectedItem(String.valueOf(year));
+        
+        genderList.setSelectedItem(gender);
+        roleList.setSelectedItem(role == 3 ? "STUDENT" : "TEACHER");
+        statusList.setSelectedItem(status ? "ACTIVE" : "INACTIVE");
+    }
+
+    public void setIsRegister(boolean isRegister) {
+        this.isRegister = isRegister;
+    }
+
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressField;
