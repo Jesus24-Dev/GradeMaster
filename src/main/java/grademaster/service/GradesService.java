@@ -60,4 +60,8 @@ public class GradesService {
     public ArrayList<Grades> getGradesStudent(String id, YearStudy yearStudy, Period period){
         return gradesRepository.getGradesStudent(conn, id, yearStudy, period);
     }
+    
+    public ArrayList<Grades> getGradesPrincipal(YearStudy yearStudy, SectionStudy sectionStudy){
+        return gradesRepository.getGradesPrincipal(conn, yearStudy, sectionStudy);
+    }
 }
