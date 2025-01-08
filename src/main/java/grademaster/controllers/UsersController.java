@@ -43,9 +43,16 @@ public class UsersController {
         return usersService.getUser(id);
     }
     
-    public void updateUser(String id, String name, String lastname, String password, Date birthday, String address, String gender, int role, boolean status){
+    public int updateUser(String id, String oldId, String name, String lastname, String password, Date birthday, String address, String gender, int role, boolean status){
         Users user = new Users(id, name, lastname, password, birthday, address, gender, role, status);
-        usersService.updateUser(user, status);
+        
+        try {
+            usersService.updateUser(user, status, oldId);
+            return 2;
+        } catch (RuntimeException e){
+            return 3;
+        }
+        
     }
     
     public void deleteUser(String id, boolean newStatus){

@@ -34,8 +34,8 @@ public class UsersService {
         return usersRepository.getUser(conn, id);
     }
     
-    public void updateUser(Users user, boolean status){
-        usersRepository.updateUser(conn, user, true);
+    public void updateUser(Users user, boolean status, String oldId){
+        usersRepository.updateUser(conn, user, true, oldId);
     }
     
     public void deleteUser(String id, boolean newStatus){

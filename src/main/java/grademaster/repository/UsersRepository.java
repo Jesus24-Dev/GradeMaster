@@ -90,7 +90,7 @@ public class UsersRepository {
         }
     }
     
-    public void updateUser(Connection conn, Users user, boolean status){
+    public void updateUser(Connection conn, Users user, boolean status, String oldId){
         String query = "UPDATE users SET id = ?, name = ?, lastname = ?, password = ?, birthday = ?, address = ?, gender = ?, rol = ?, status = ? WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, user.getId());
@@ -102,7 +102,7 @@ public class UsersRepository {
             statement.setString(7, user.getGender());
             statement.setInt(8, user.getRole());
             statement.setBoolean(9, status);
-            statement.setString(10, user.getId());
+            statement.setString(10, oldId);
             
             statement.executeUpdate();
         } catch (SQLException e){
