@@ -7,6 +7,7 @@ package grademaster.views.panels.content.principal;
 import grademaster.GradeMaster;
 import grademaster.models.Users;
 import grademaster.utils.WindowFunctions;
+import grademaster.views.main.usersForm;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
     int rol;
     String userIdSelected;
     boolean statusSelected;
+    Users user;
     
     public UsersPrincipalView() {
         initComponents();
@@ -95,6 +97,11 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         editUserButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         editUserButton.setText("Edit user");
         editUserButton.setEnabled(false);
+        editUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editUserButtonActionPerformed(evt);
+            }
+        });
 
         addUserButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         addUserButton.setText("Register new User");
@@ -246,9 +253,8 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         userToInactiveButton.setEnabled(true);
         int row = usersTable.getSelectedRow();
         userIdSelected = (String) usersTable.getValueAt(row, 0);
-        String userStatus = (String) usersTable.getValueAt(row, 6);
-        
-        statusSelected = userStatus.equals("ACTIVE") ? true : false;
+        String userStatus = (String) usersTable.getValueAt(row, 6);        
+        statusSelected = userStatus.equals("ACTIVE") ? true : false; 
     }//GEN-LAST:event_usersTableMouseClicked
 
     private void userToInactiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userToInactiveButtonActionPerformed
@@ -259,6 +265,25 @@ public class UsersPrincipalView extends javax.swing.JPanel {
     private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
         WindowFunctions.startUserForm();
     }//GEN-LAST:event_addUserButtonActionPerformed
+
+    private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
+        usersForm userForm = new usersForm();
+        user = GradeMaster.userController.getUser(userIdSelected);
+        userForm.setOldId(userIdSelected);
+        userForm.setIsRegister(false);
+        userForm.fillFields(user.getId(), 
+                user.getName(), 
+                user.getLastname(), 
+                user.getPassword(), 
+                user.getAddress(), 
+                user.getBirthday(),
+                user.getGender(),
+                user.getRole(),
+                user.isStatus());
+        userForm.setTitle("GRADEMASTER - Users Form");
+        userForm.setVisible(true);
+        userForm.setLocationRelativeTo(null);      
+    }//GEN-LAST:event_editUserButtonActionPerformed
 
     private void fillTable(){
         ArrayList<Users> users;
