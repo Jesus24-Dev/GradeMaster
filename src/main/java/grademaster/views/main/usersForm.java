@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class usersForm extends javax.swing.JFrame {
 
     private boolean isRegister;
+    private String oldId;
     
     public usersForm() {
         initComponents();
@@ -320,10 +321,11 @@ public class usersForm extends javax.swing.JFrame {
             showMessages(5);
         } else {
             if(isRegister){
-                int value = GradeMaster.userController.createUser(id, name, lastname, password, birthday, status, gender, roleInt);
+                int value = GradeMaster.userController.createUser(id, name, lastname, password, birthday, address, gender, roleInt);
                 showMessages(value);
             } else {
-                GradeMaster.userController.updateUser(id, name, lastname, password, birthday, address, gender, roleInt, statusBoolean);
+                int value = GradeMaster.userController.updateUser(id, oldId, name, lastname, password, birthday, address, gender, roleInt, statusBoolean);
+                showMessages(value);
             }
             
         }
@@ -340,6 +342,8 @@ public class usersForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "All fields are required.");
         } else if(value == 2){
             JOptionPane.showMessageDialog(null, "User edited succesfully");
+        } else if (value == 3){
+            JOptionPane.showMessageDialog(null, "error");
         }
     }
     /**
@@ -431,6 +435,10 @@ public class usersForm extends javax.swing.JFrame {
 
     public void setIsRegister(boolean isRegister) {
         this.isRegister = isRegister;
+    }
+
+    public void setOldId(String oldId) {
+        this.oldId = oldId;
     }
 
     
