@@ -10,6 +10,7 @@ import grademaster.utils.StudyEnums;
 import grademaster.utils.WindowFunctions;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +21,7 @@ public class YearListPrincipalView extends javax.swing.JPanel {
 
     private StudyEnums.YearStudy yearStudy;
     private StudyEnums.SectionStudy sectionStudy;
+    String id;
     
     public YearListPrincipalView() {
         initComponents();
@@ -73,6 +75,11 @@ public class YearListPrincipalView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        yearListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                yearListTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(yearListTable);
         if (yearListTable.getColumnModel().getColumnCount() > 0) {
             yearListTable.getColumnModel().getColumn(0).setResizable(false);
@@ -119,6 +126,7 @@ public class YearListPrincipalView extends javax.swing.JPanel {
 
         deleteFromListButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         deleteFromListButton.setText("Delete");
+        deleteFromListButton.setEnabled(false);
         deleteFromListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteFromListButtonActionPerformed(evt);
@@ -185,7 +193,13 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_addStudentToListButtonActionPerformed
 
     private void deleteFromListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFromListButtonActionPerformed
-        // TODO add your handling code here:
+        int option = JOptionPane.showConfirmDialog(null,"Are you sure to remove the student from the list?");
+        if (option == 0){
+            GradeMaster.yearListController.deleteFromList(id);
+            JOptionPane.showMessageDialog(null, "Student removed from list");
+        }
+        deleteFromListButton.setEnabled(false);
+        fillTable();
     }//GEN-LAST:event_deleteFromListButtonActionPerformed
 
     private void editListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editListButtonActionPerformed
@@ -195,12 +209,20 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
         currentYearStudy();
         fillTable();
+        deleteFromListButton.setEnabled(false);
     }//GEN-LAST:event_yearStudyListActionPerformed
 
     private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
         currentSectionStudy();
         fillTable();
+        deleteFromListButton.setEnabled(false);
     }//GEN-LAST:event_sectionListActionPerformed
+
+    private void yearListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yearListTableMouseClicked
+        int row = yearListTable.getSelectedRow();
+        id = (String) yearListTable.getValueAt(row, 2);
+        deleteFromListButton.setEnabled(true);
+    }//GEN-LAST:event_yearListTableMouseClicked
     
     private void fillComboBoxEnums(){
         StudyEnums.YearStudy yearStudy[] = StudyEnums.YearStudy.values();
