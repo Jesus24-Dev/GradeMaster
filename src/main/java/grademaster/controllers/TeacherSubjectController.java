@@ -43,4 +43,8 @@ public class TeacherSubjectController {
         return teacherSubjectService.getTeacherBySubject(id);
     }
     
+    public ArrayList<TeacherSubject> getTeacherWithoutSubjects(){
+        return teacherSubjectService.getTeacherWithoutSubjects();
+    }
+    
 }

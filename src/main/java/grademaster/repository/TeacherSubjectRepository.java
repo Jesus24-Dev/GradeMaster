@@ -107,4 +107,34 @@ public class TeacherSubjectRepository {
             throw new RuntimeException(e);
         }
     }
+    
+    public ArrayList<TeacherSubject> getTeacherWithoutSubjects(Connection conn){
+        ArrayList<TeacherSubject> subjects = new ArrayList<>();
+        String sql = """
+                     SELECT users.id, users.name, users.lastname
+                     FROM users
+                     LEFT JOIN teacher_subject ON teacher_subject.teacherid = users.id
+                     WHERE teacher_subject.teacherid IS NULL AND users.rol = (SELECT id FROM rol WHERE rol_desc = 'TEACHER')
+                     """;
+        
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){
+            try(ResultSet rs = pstm.executeQuery()){
+                if (rs.next()){
+                    do{
+                        TeacherSubject teacher = new TeacherSubject(
+                                rs.getString("id"),
+                                "",
+                                rs.getString("name"),
+                                rs.getString("lastname")
+                        );
+                    subjects.add(teacher);
+                    } while(rs.next());
+                }
+            }          
+            return subjects;
+        } catch (SQLException e){
+            System.out.println(e);
+            return null;
+        } 
+    }
 }

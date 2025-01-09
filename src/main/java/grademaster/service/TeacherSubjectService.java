@@ -41,4 +41,8 @@ public class TeacherSubjectService {
     public ArrayList<TeacherSubject> getTeacherBySubject(String id){
         return teacherSubjectRepository.getTeacherBySubject(id, conn);
     }
+    
+    public ArrayList<TeacherSubject> getTeacherWithoutSubjects(){
+        return teacherSubjectRepository.getTeacherWithoutSubjects(conn);
+    }
 }
