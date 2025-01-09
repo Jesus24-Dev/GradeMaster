@@ -4,6 +4,11 @@
  */
 package grademaster.views.panels.content.principal;
 
+import grademaster.GradeMaster;
+import grademaster.models.TeacherSubject;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jesus24-Dev
@@ -15,6 +20,7 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
      */
     public SubjectsPrincipalView() {
         initComponents();
+        fillTable();
     }
 
     /**
@@ -31,9 +37,11 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
         assignTeacherButton = new javax.swing.JButton();
         changeTeacherButton = new javax.swing.JButton();
         deleteAssignmentButton = new javax.swing.JButton();
-        showSubjectsButton = new javax.swing.JButton();
         addSubjectButton = new javax.swing.JButton();
         deleteSubjectButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        subjectTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -91,14 +99,6 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        showSubjectsButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        showSubjectsButton.setText("Show subjects");
-        showSubjectsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showSubjectsButtonActionPerformed(evt);
-            }
-        });
-
         addSubjectButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         addSubjectButton.setText("Add new Subject");
         addSubjectButton.addActionListener(new java.awt.event.ActionListener() {
@@ -115,44 +115,81 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             }
         });
 
+        subjectTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "SUBJECT NAME"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(subjectTable);
+        if (subjectTable.getColumnModel().getColumnCount() > 0) {
+            subjectTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("SUBJECTS LIST");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(deleteSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(addSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(changeTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(assignTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showSubjectsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(assignTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(changeTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(deleteAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(showSubjectsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
-                        .addComponent(addSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(deleteSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(deleteSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(55, 55, 55))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -168,10 +205,6 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_changeTeacherButtonActionPerformed
 
-    private void showSubjectsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSubjectsButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showSubjectsButtonActionPerformed
-
     private void deleteSubjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSubjectButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteSubjectButtonActionPerformed
@@ -180,6 +213,25 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addSubjectButtonActionPerformed
 
+    
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) subjectTeacherTable.getModel();
+        model.setRowCount(0);
+        
+        ArrayList<TeacherSubject> teacherList = GradeMaster.teacherSubjectController.getTeachers();
+        
+        if (teacherList != null){
+            for (TeacherSubject ts : teacherList){
+                String id = ts.getTeacherId();
+                String name = ts.getTeacherName();
+                String lastname = ts.getTeacherLastname();
+                String subject = ts.getNameSubject();
+                
+                Object[] newRow = {id, name, lastname, subject};
+                model.addRow(newRow);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addSubjectButton;
@@ -187,8 +239,10 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
     private javax.swing.JButton changeTeacherButton;
     private javax.swing.JButton deleteAssignmentButton;
     private javax.swing.JButton deleteSubjectButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton showSubjectsButton;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable subjectTable;
     private javax.swing.JTable subjectTeacherTable;
     // End of variables declaration//GEN-END:variables
 }
