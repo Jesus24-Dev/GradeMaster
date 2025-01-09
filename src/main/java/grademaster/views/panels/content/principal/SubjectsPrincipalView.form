@@ -29,7 +29,6 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="addSubjectButton" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="changeTeacherButton" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                   <Component id="deleteAssignmentButton" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                   <Component id="assignTeacherButton" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
@@ -47,19 +46,17 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="705" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="assignTeacherButton" min="-2" pref="58" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="changeTeacherButton" min="-2" pref="58" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="deleteAssignmentButton" min="-2" pref="58" max="-2" attributes="0"/>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="270" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="deleteSubjectButton" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
@@ -133,17 +130,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignTeacherButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="changeTeacherButton">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Change teacher"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeTeacherButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="deleteAssignmentButton">

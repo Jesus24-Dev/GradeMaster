@@ -7,6 +7,7 @@ package grademaster.views.panels.content.principal;
 import grademaster.GradeMaster;
 import grademaster.models.Subjects;
 import grademaster.models.TeacherSubject;
+import grademaster.views.main.AssignTeacher;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +38,6 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         subjectTeacherTable = new javax.swing.JTable();
         assignTeacherButton = new javax.swing.JButton();
-        changeTeacherButton = new javax.swing.JButton();
         deleteAssignmentButton = new javax.swing.JButton();
         addSubjectButton = new javax.swing.JButton();
         deleteSubjectButton = new javax.swing.JButton();
@@ -87,14 +87,6 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
         assignTeacherButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignTeacherButtonActionPerformed(evt);
-            }
-        });
-
-        changeTeacherButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        changeTeacherButton.setText("Change teacher");
-        changeTeacherButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeTeacherButtonActionPerformed(evt);
             }
         });
 
@@ -171,7 +163,6 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
                         .addComponent(deleteSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(addSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(changeTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(assignTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,18 +177,16 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(assignTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(changeTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(36, 36, 36)
                         .addComponent(deleteAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addGap(77, 77, 77)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(deleteSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,12 +200,10 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteAssignmentButtonActionPerformed
 
     private void assignTeacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignTeacherButtonActionPerformed
-        // TODO add your handling code here:
+        AssignTeacher assignTeacher = new AssignTeacher();
+        assignTeacher.setLocationRelativeTo(null);
+        assignTeacher.setVisible(true);
     }//GEN-LAST:event_assignTeacherButtonActionPerformed
-
-    private void changeTeacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeTeacherButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_changeTeacherButtonActionPerformed
 
     private void deleteSubjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSubjectButtonActionPerformed
         int value = JOptionPane.showConfirmDialog(null, "Are you sure to eliminate this school subject");
@@ -296,7 +283,6 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addSubjectButton;
     private javax.swing.JButton assignTeacherButton;
-    private javax.swing.JButton changeTeacherButton;
     private javax.swing.JButton deleteAssignmentButton;
     private javax.swing.JButton deleteSubjectButton;
     private javax.swing.JLabel jLabel1;
