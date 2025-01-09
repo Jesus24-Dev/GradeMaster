@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SubjectsPrincipalView extends javax.swing.JPanel {
 
-    String subjectName;
+    String subjectSelected;
     
     public SubjectsPrincipalView() {
         initComponents();
@@ -70,6 +70,11 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        subjectTeacherTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                subjectTeacherTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(subjectTeacherTable);
         if (subjectTeacherTable.getColumnModel().getColumnCount() > 0) {
             subjectTeacherTable.getColumnModel().getColumn(0).setResizable(false);
@@ -111,6 +116,7 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
 
         deleteSubjectButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         deleteSubjectButton.setText("Delete subject");
+        deleteSubjectButton.setEnabled(false);
         deleteSubjectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteSubjectButtonActionPerformed(evt);
@@ -138,6 +144,11 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        subjectTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                subjectTableMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(subjectTable);
@@ -208,7 +219,13 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_changeTeacherButtonActionPerformed
 
     private void deleteSubjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSubjectButtonActionPerformed
-        // TODO add your handling code here:
+        int value = JOptionPane.showConfirmDialog(null, "Are you sure to eliminate this school subject");
+        if (value == 0){
+            GradeMaster.subjectController.deleteSubject(subjectSelected);
+            JOptionPane.showMessageDialog(null, "Subject deleted.");
+        }
+        deleteSubjectButton.setEnabled(false);
+        fillSubjectTable();
     }//GEN-LAST:event_deleteSubjectButtonActionPerformed
 
     private void addSubjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSubjectButtonActionPerformed
@@ -226,8 +243,19 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             }
         }
         fillSubjectTable();
-        }       
+        }
+        deleteSubjectButton.setEnabled(false);
     }//GEN-LAST:event_addSubjectButtonActionPerformed
+
+    private void subjectTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjectTableMouseClicked
+        int row = subjectTable.getSelectedRow();
+        subjectSelected = (String) subjectTable.getValueAt(row, 0);
+        deleteSubjectButton.setEnabled(true);
+    }//GEN-LAST:event_subjectTableMouseClicked
+
+    private void subjectTeacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjectTeacherTableMouseClicked
+        deleteSubjectButton.setEnabled(false);
+    }//GEN-LAST:event_subjectTeacherTableMouseClicked
 
     
     private void fillTable(){
