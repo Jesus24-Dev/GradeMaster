@@ -24,9 +24,14 @@ public class TeacherSubjectController {
         return teacherSubjectService.getTeachers();
     }
     
-    public void addTeacherForSubject(String id, String nameSubject){
-        TeacherSubject teacherSubject = new TeacherSubject(id, nameSubject);        
-        teacherSubjectService.addTeacherForSubject(teacherSubject);
+    public int addTeacherForSubject(String id, String nameSubject){
+        try {
+            TeacherSubject teacherSubject = new TeacherSubject(id, nameSubject);        
+            teacherSubjectService.addTeacherForSubject(teacherSubject);
+            return 0;
+        } catch (RuntimeException e){
+            return -1;
+        }
     }
     
     public void updateTeacherSubject(String id, String nameSubject){
