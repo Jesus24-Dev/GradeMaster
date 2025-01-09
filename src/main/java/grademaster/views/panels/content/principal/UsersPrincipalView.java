@@ -254,12 +254,14 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         int row = usersTable.getSelectedRow();
         userIdSelected = (String) usersTable.getValueAt(row, 0);
         String userStatus = (String) usersTable.getValueAt(row, 6);        
-        statusSelected = userStatus.equals("ACTIVE") ? true : false; 
+        statusSelected = userStatus.equals("ACTIVE"); 
     }//GEN-LAST:event_usersTableMouseClicked
 
     private void userToInactiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userToInactiveButtonActionPerformed
         GradeMaster.userController.deleteUser(userIdSelected, !statusSelected);
-        JOptionPane.showMessageDialog(null, "Status updated to " + !statusSelected);
+        String message = !statusSelected ? "ACTIVE" : "INACTIVE";
+        JOptionPane.showMessageDialog(null, "Status updated to " + message);
+        fillTable();
     }//GEN-LAST:event_userToInactiveButtonActionPerformed
 
     private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
