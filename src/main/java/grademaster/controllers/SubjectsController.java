@@ -23,9 +23,15 @@ public class SubjectsController {
         return subjectsService.getSubjects();
     }
     
-    public void createSubject(String nameSubject){
-        Subjects subject = new Subjects(nameSubject);
-        subjectsService.createSubject(subject);
+    public int createSubject(String nameSubject){
+        try {
+            Subjects subject = new Subjects(nameSubject);
+            subjectsService.createSubject(subject);
+            return 0;
+        } catch (RuntimeException e){
+            return -1;
+        }
+        
     }
     
     public void deleteSubject(String nameSubject){
