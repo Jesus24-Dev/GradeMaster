@@ -109,7 +109,7 @@ public class YearListRepository {
                      SELECT u.id, u.name, u.lastname
                      FROM users u
                      LEFT JOIN yearlist yl ON u.id = yl.studentid
-                     WHERE yl.studentid IS NULL AND u.rol = 3""";
+                     WHERE yl.studentid IS NULL AND u.rol = 3 AND u.status = true""";
         
         try(PreparedStatement pstm = conn.prepareStatement(sql)){                       
             try(ResultSet rs = pstm.executeQuery()){
