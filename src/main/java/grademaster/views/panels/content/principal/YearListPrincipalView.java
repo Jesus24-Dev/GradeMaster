@@ -8,6 +8,7 @@ import grademaster.GradeMaster;
 import grademaster.models.YearList;
 import grademaster.utils.StudyEnums;
 import grademaster.utils.WindowFunctions;
+import grademaster.views.main.EditListForm;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -118,6 +119,7 @@ public class YearListPrincipalView extends javax.swing.JPanel {
 
         editListButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         editListButton.setText("Edit list");
+        editListButton.setEnabled(false);
         editListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editListButtonActionPerformed(evt);
@@ -203,25 +205,32 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteFromListButtonActionPerformed
 
     private void editListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editListButtonActionPerformed
-        // TODO add your handling code here:
+        EditListForm editList = new EditListForm();
+        editList.fillId(id);
+        editList.setVisible(true);
+        editList.setLocationRelativeTo(null);
+        editListButton.setEnabled(false);
     }//GEN-LAST:event_editListButtonActionPerformed
 
     private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
         currentYearStudy();
         fillTable();
         deleteFromListButton.setEnabled(false);
+        editListButton.setEnabled(false);
     }//GEN-LAST:event_yearStudyListActionPerformed
 
     private void sectionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionListActionPerformed
         currentSectionStudy();
         fillTable();
         deleteFromListButton.setEnabled(false);
+        editListButton.setEnabled(false);
     }//GEN-LAST:event_sectionListActionPerformed
 
     private void yearListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yearListTableMouseClicked
         int row = yearListTable.getSelectedRow();
         id = (String) yearListTable.getValueAt(row, 2);
         deleteFromListButton.setEnabled(true);
+        editListButton.setEnabled(true);
     }//GEN-LAST:event_yearListTableMouseClicked
     
     private void fillComboBoxEnums(){
