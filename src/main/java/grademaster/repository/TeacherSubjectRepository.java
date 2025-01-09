@@ -17,7 +17,8 @@ public class TeacherSubjectRepository {
                      SELECT a.id, a.name, a.lastname, b.namesubject
                      FROM teacher_subject c
                      LEFT JOIN users a ON a.id = c.teacherid
-                     LEFT JOIN subject b ON b.id = c.subjectid""";
+                     LEFT JOIN subject b ON b.id = c.subjectid
+                     WHERE a.status = true""";
         
         try(PreparedStatement pstm = conn.prepareStatement(sql)){
             try(ResultSet rs = pstm.executeQuery()){
