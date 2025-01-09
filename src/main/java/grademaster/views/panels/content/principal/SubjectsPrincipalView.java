@@ -5,8 +5,10 @@
 package grademaster.views.panels.content.principal;
 
 import grademaster.GradeMaster;
+import grademaster.models.Subjects;
 import grademaster.models.TeacherSubject;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SubjectsPrincipalView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SubjectsPrincipalView
-     */
+    String subjectName;
+    
     public SubjectsPrincipalView() {
         initComponents();
         fillTable();
+        fillSubjectTable();
     }
 
     /**
@@ -210,7 +212,21 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteSubjectButtonActionPerformed
 
     private void addSubjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSubjectButtonActionPerformed
-        // TODO add your handling code here:
+        String subjectName = JOptionPane.showInputDialog(null, "Insert new subject name");
+        if(subjectName != null){
+             if (subjectName.equals("")){
+            JOptionPane.showMessageDialog(null, "Name field can't be empty.");
+        } else {
+            int value = GradeMaster.subjectController.createSubject(subjectName.toUpperCase());
+            
+            if(value == 0){
+                JOptionPane.showMessageDialog(null, "Subject created succesfully.");
+            } else {
+                JOptionPane.showMessageDialog(null, "This subject already exists.");
+            }
+        }
+        fillSubjectTable();
+        }       
     }//GEN-LAST:event_addSubjectButtonActionPerformed
 
     
@@ -228,6 +244,22 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
                 String subject = ts.getNameSubject();
                 
                 Object[] newRow = {id, name, lastname, subject};
+                model.addRow(newRow);
+            }
+        }
+    }
+    
+    private void fillSubjectTable(){
+        DefaultTableModel model = (DefaultTableModel) subjectTable.getModel();
+        model.setRowCount(0);
+        
+        ArrayList<Subjects> subjectList = GradeMaster.subjectController.getSubjects();
+        
+        if (subjectList != null){
+            for (Subjects s: subjectList){
+                String subject = s.getName();
+                
+                Object[] newRow = {subject};
                 model.addRow(newRow);
             }
         }
