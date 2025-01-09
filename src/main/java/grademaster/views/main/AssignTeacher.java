@@ -8,6 +8,7 @@ import grademaster.GradeMaster;
 import grademaster.models.Subjects;
 import grademaster.models.TeacherSubject;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,9 +17,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AssignTeacher extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AssignTeacher
-     */
+    private String id;
+    private String subjectName;
+    
     public AssignTeacher() {
         initComponents();
         fillTable();
@@ -44,6 +45,7 @@ public class AssignTeacher extends javax.swing.JFrame {
         subjectField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        addBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -72,6 +74,11 @@ public class AssignTeacher extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        teachersTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                teachersTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(teachersTable);
@@ -139,6 +146,13 @@ public class AssignTeacher extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Subject Name");
 
+        addBtn.setText("Assign Teacher");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,7 +161,9 @@ public class AssignTeacher extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -184,6 +200,8 @@ public class AssignTeacher extends javax.swing.JFrame {
                         .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
                         .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66))))
         );
@@ -208,9 +226,31 @@ public class AssignTeacher extends javax.swing.JFrame {
 
     private void subjectTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjectTableMouseClicked
         int row = subjectTable.getSelectedRow();
-//        subjectSelected = (String) subjectTable.getValueAt(row, 0);
-//        deleteSubjectButton.setEnabled(true);
+        String subjectSelected = (String) subjectTable.getValueAt(row, 0);
+        subjectField.setText(subjectSelected);
+        subjectName = subjectSelected;
     }//GEN-LAST:event_subjectTableMouseClicked
+
+    private void teachersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teachersTableMouseClicked
+        int row = teachersTable.getSelectedRow();
+        String idSelected = (String) teachersTable.getValueAt(row, 0);
+        idField.setText(idSelected);
+        id = idSelected;
+    }//GEN-LAST:event_teachersTableMouseClicked
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        if (idField.equals("") || subjectField.equals("")){
+            JOptionPane.showMessageDialog(null, "Both fields are required");
+        } else {
+           int value = GradeMaster.teacherSubjectController.addTeacherForSubject(id, subjectName);
+           if (value == -1){
+               JOptionPane.showMessageDialog(null, "Error to assign subject");
+           } else if (value == 0) {
+               JOptionPane.showMessageDialog(null, "Teacher assigned succesfully");
+           }
+           fillTable();
+        }
+    }//GEN-LAST:event_addBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,6 +322,7 @@ public class AssignTeacher extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtn;
     private javax.swing.JButton closeBtn;
     private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
