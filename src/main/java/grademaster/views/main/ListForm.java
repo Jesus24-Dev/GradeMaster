@@ -208,9 +208,13 @@ public class ListForm extends javax.swing.JFrame {
         String year = (String) yearStudyList.getSelectedItem();
         String section = (String) sectionList.getSelectedItem();
         
-        GradeMaster.yearListController.addStudentToList(id, StudyEnums.YearStudy.valueOf(year), StudyEnums.SectionStudy.valueOf(section));
-        JOptionPane.showMessageDialog(null, "Student added to list succesfully!");
-        fillTable();
+        if (id.equals("")){
+            JOptionPane.showMessageDialog(null, ("ID field can't be empty."));
+        } else {
+            GradeMaster.yearListController.addStudentToList(id, StudyEnums.YearStudy.valueOf(year), StudyEnums.SectionStudy.valueOf(section));
+            JOptionPane.showMessageDialog(null, "Student added to list succesfully!");
+            fillTable();
+        }             
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void fillComboBoxEnums(){
