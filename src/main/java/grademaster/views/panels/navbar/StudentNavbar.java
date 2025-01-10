@@ -153,12 +153,17 @@ public class StudentNavbar extends javax.swing.JPanel {
 
     private void fillContent(){
         YearList yearList = GradeMaster.yearListController.getStudentFromList(GradeMaster.user.getId());
+        if(yearList != null){
+            sectionStudentField.setText(yearList.getSection().toString());
+            yearStudentField.setText(yearList.getYearStudy().toString());
+        } else {
+            sectionStudentField.setText("NO ASSIGNED");
+            yearStudentField.setText("NO ASSIGNED");
+        }
         idStudentField.setText(GradeMaster.user.getId());
         nameStudentField.setText(GradeMaster.user.getName());
         lastnameStudentField.setText(GradeMaster.user.getLastname());
-        sectionStudentField.setText(yearList.getSection().toString());
-        yearStudentField.setText(yearList.getYearStudy().toString());
-        
+                
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

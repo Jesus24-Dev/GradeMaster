@@ -87,26 +87,35 @@ public class StudentView extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 354, 965, -1));
 
+        yearStudyList.setBackground(new java.awt.Color(255, 255, 255));
+        yearStudyList.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        yearStudyList.setForeground(new java.awt.Color(0, 0, 0));
         yearStudyList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 yearStudyListActionPerformed(evt);
             }
         });
-        add(yearStudyList, new org.netbeans.lib.awtextra.AbsoluteConstraints(574, 229, 125, 40));
+        add(yearStudyList, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 160, 40));
 
+        subjectList.setBackground(new java.awt.Color(255, 255, 255));
+        subjectList.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        subjectList.setForeground(new java.awt.Color(0, 0, 0));
         subjectList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subjectListActionPerformed(evt);
             }
         });
-        add(subjectList, new org.netbeans.lib.awtextra.AbsoluteConstraints(727, 229, 125, 40));
+        add(subjectList, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 230, 150, 40));
 
+        periodList.setBackground(new java.awt.Color(255, 255, 255));
+        periodList.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        periodList.setForeground(new java.awt.Color(0, 0, 0));
         periodList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 periodListActionPerformed(evt);
             }
         });
-        add(periodList, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 229, 125, 40));
+        add(periodList, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 150, 40));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -121,7 +130,7 @@ public class StudentView extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Year Study");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(574, 193, 109, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 109, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
