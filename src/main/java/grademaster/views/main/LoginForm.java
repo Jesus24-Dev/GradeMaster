@@ -152,7 +152,7 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        String id = idField1.getText();
+        String id = idField1.getText().trim();
         char[] password = passwordField.getPassword();
         String passwordString = new String(password);   
         int number = GradeMaster.userController.authenticate(id, passwordString);

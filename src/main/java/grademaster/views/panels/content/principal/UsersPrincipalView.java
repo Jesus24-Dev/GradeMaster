@@ -235,7 +235,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
     private void searchByIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByIDActionPerformed
         editUserButton.setEnabled(false);
         userToInactiveButton.setEnabled(false);
-        String id = userID.getText();
+        String id = userID.getText().trim();
         if(id.equals("")){
             JOptionPane.showMessageDialog(null, "This field can't be empty");
         } else {
