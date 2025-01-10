@@ -39,9 +39,8 @@ public class TeacherSubjectController {
         teacherSubjectService.updateTeacherSubject(teacherSubject);
     }
     
-    public void deleteTeacherSubject(String id, String nameSubject){
-        TeacherSubject teacherSubject = new TeacherSubject(id, nameSubject);        
-        teacherSubjectService.deleteTeacherSubject(teacherSubject);
+    public void deleteTeacherSubject(String id){      
+        teacherSubjectService.deleteTeacherSubject(id);
     }
     
     public ArrayList<TeacherSubject> getTeacherBySubject(String id){

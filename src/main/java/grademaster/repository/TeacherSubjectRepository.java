@@ -96,12 +96,10 @@ public class TeacherSubjectRepository {
         }
     }
     
-    public void deleteTeacherSubject(Connection conn, TeacherSubject teacherSubject){
-        String sql = "DELETE FROM teacher_subject WHERE subjectid = (SELECT id FROM subject WHERE namesubject = ?) AND teacherid = ?";              
+    public void deleteTeacherSubject(Connection conn, String teacherId){
+        String sql = "DELETE FROM teacher_subject WHERE teacherid = ?";              
         try(PreparedStatement pstm = conn.prepareStatement(sql)){          
-            pstm.setString(1, teacherSubject.getNameSubject());
-            pstm.setString(2, teacherSubject.getTeacherId());
-            
+            pstm.setString(1, teacherId);           
             pstm.executeUpdate();
         } catch (SQLException e){
             throw new RuntimeException(e);

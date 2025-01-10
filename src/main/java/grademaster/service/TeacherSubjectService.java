@@ -34,8 +34,8 @@ public class TeacherSubjectService {
         teacherSubjectRepository.updateTeacherSubject(conn, teacherSubject);
     }
     
-    public void deleteTeacherSubject(TeacherSubject teacherSubject){
-        teacherSubjectRepository.deleteTeacherSubject(conn, teacherSubject);
+    public void deleteTeacherSubject(String teacherID){
+        teacherSubjectRepository.deleteTeacherSubject(conn, teacherID);
     }
     
     public ArrayList<TeacherSubject> getTeacherBySubject(String id){
