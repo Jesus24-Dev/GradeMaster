@@ -60,7 +60,9 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Viewing Now");
 
+        userRol.setBackground(new java.awt.Color(255, 255, 255));
         userRol.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        userRol.setForeground(new java.awt.Color(0, 0, 0));
         userRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Students", "Teachers" }));
         userRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +70,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
             }
         });
 
+        statusUser.setBackground(new java.awt.Color(255, 255, 255));
         statusUser.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         statusUser.setText("Inactive");
         statusUser.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +80,7 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         });
 
         userID.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        userID.setForeground(new java.awt.Color(0, 0, 0));
         userID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userIDActionPerformed(evt);
@@ -86,7 +90,9 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel2.setText("Search by ID");
 
-        searchByID.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        searchByID.setBackground(new java.awt.Color(0, 255, 255));
+        searchByID.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        searchByID.setForeground(new java.awt.Color(0, 0, 0));
         searchByID.setText("Search");
         searchByID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +100,9 @@ public class UsersPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        editUserButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        editUserButton.setBackground(new java.awt.Color(0, 255, 255));
+        editUserButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        editUserButton.setForeground(new java.awt.Color(0, 0, 0));
         editUserButton.setText("Edit user");
         editUserButton.setEnabled(false);
         editUserButton.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +111,9 @@ public class UsersPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        addUserButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        addUserButton.setBackground(new java.awt.Color(0, 255, 255));
+        addUserButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        addUserButton.setForeground(new java.awt.Color(0, 0, 0));
         addUserButton.setText("Register new User");
         addUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +121,9 @@ public class UsersPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        userToInactiveButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        userToInactiveButton.setBackground(new java.awt.Color(0, 255, 255));
+        userToInactiveButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        userToInactiveButton.setForeground(new java.awt.Color(0, 0, 0));
         userToInactiveButton.setText("Change status");
         userToInactiveButton.setEnabled(false);
         userToInactiveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +132,8 @@ public class UsersPrincipalView extends javax.swing.JPanel {
             }
         });
 
+        usersTable.setBackground(new java.awt.Color(255, 255, 255));
+        usersTable.setForeground(new java.awt.Color(0, 0, 0));
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -158,8 +172,8 @@ public class UsersPrincipalView extends javax.swing.JPanel {
                             .addComponent(userRol, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(statusUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
                                 .addComponent(editUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
