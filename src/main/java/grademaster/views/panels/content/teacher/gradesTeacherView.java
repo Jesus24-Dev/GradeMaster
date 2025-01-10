@@ -353,13 +353,16 @@ public class gradesTeacherView extends javax.swing.JPanel {
         model.setRowCount(0);
         ArrayList<Grades> grades; 
         
-        if(subjectName.equals("ALL SUBJECTS")){
-            grades = GradeMaster.gradesController.getGradesPrincipal(yearStudy, sectionStudy);
+        if(subjectName == null){
+            addButton.setEnabled(false);
         } else {
-            grades = GradeMaster.gradesController.getGradesBySubjectTeacher(subjectName, yearStudy, sectionStudy);
-        }
-        
-        if(grades != null){       
+            if(subjectName.equals("ALL SUBJECTS")){
+                grades = GradeMaster.gradesController.getGradesPrincipal(yearStudy, sectionStudy);
+            } else {
+                grades = GradeMaster.gradesController.getGradesBySubjectTeacher(subjectName, yearStudy, sectionStudy);
+            }   
+            addButton.setEnabled(true);
+            if(grades != null){       
             for (Grades grade : grades) {
                 String id = grade.getStudentId();
                 String name = grade.getNameStudent();
@@ -373,6 +376,7 @@ public class gradesTeacherView extends javax.swing.JPanel {
 
                 Object[] newRow = {id, name, lastname, subject, yearStudy,  section, activity, period, gradeValue};
                 model.addRow(newRow);
+                }
             }
         }
     }

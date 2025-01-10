@@ -214,7 +214,8 @@ public class ListForm extends javax.swing.JFrame {
             GradeMaster.yearListController.addStudentToList(id, StudyEnums.YearStudy.valueOf(year), StudyEnums.SectionStudy.valueOf(section));
             JOptionPane.showMessageDialog(null, "Student added to list succesfully!");
             fillTable();
-        }             
+            idField.setText("");
+        }        
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void fillComboBoxEnums(){
@@ -287,6 +288,8 @@ public class ListForm extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;

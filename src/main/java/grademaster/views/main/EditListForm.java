@@ -6,6 +6,9 @@ package grademaster.views.main;
 
 import grademaster.GradeMaster;
 import grademaster.utils.StudyEnums;
+import grademaster.views.panels.content.principal.YearListPrincipalView;
+import grademaster.views.panels.content.teacher.gradesTeacherView;
+import grademaster.views.panels.navbar.PrincipalNavbar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -15,9 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class EditListForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form EditListForm
-     */
+    public boolean isEdited = false;
+    
     public EditListForm() {
         initComponents();
         fillComboBoxEnums();
@@ -175,6 +177,7 @@ public class EditListForm extends javax.swing.JFrame {
     }//GEN-LAST:event_sectionListActionPerformed
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        PrincipalNavbar.yearListPrincipalView.updateTable();
         dispose();
     }//GEN-LAST:event_closeBtnActionPerformed
 
@@ -184,7 +187,8 @@ public class EditListForm extends javax.swing.JFrame {
         String id = idField.getText();
         
         GradeMaster.yearListController.updateList(id, StudyEnums.YearStudy.valueOf(yearStudy), StudyEnums.SectionStudy.valueOf(section));
-        JOptionPane.showMessageDialog(null, "Update student data list succesfully!");
+        JOptionPane.showMessageDialog(null, "Update student data list succesfully!"); 
+        PrincipalNavbar.yearListPrincipalView.updateTable();
         dispose();
     }//GEN-LAST:event_doneBtnActionPerformed
 
@@ -244,6 +248,9 @@ public class EditListForm extends javax.swing.JFrame {
             }
         });
     }
+
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeBtn;

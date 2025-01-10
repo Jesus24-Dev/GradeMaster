@@ -17,9 +17,9 @@ import grademaster.views.panels.content.teacher.gradesTeacherView;
  */
 public class PrincipalNavbar extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PrincipalNavbar
-     */
+    
+    public static YearListPrincipalView yearListPrincipalView;
+            
     public PrincipalNavbar() {
         initComponents();
     }
@@ -136,7 +136,7 @@ public class PrincipalNavbar extends javax.swing.JPanel {
     }//GEN-LAST:event_gradePrincipalButtonActionPerformed
 
     private void listPrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPrincipalButtonActionPerformed
-        YearListPrincipalView yearListPrincipalView = new YearListPrincipalView();
+        yearListPrincipalView = new YearListPrincipalView();
         WindowFunctions.changeContent(yearListPrincipalView);
     }//GEN-LAST:event_listPrincipalButtonActionPerformed
 

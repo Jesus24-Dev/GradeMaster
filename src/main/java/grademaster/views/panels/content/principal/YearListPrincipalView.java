@@ -205,11 +205,13 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteFromListButtonActionPerformed
 
     private void editListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editListButtonActionPerformed
+
         EditListForm editList = new EditListForm();
         editList.fillId(id);
         editList.setVisible(true);
         editList.setLocationRelativeTo(null);
         editListButton.setEnabled(false);
+        fillTable();
     }//GEN-LAST:event_editListButtonActionPerformed
 
     private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
@@ -278,6 +280,11 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     private void currentYearStudy(){
         yearStudy = StudyEnums.YearStudy.valueOf((String) yearStudyList.getSelectedItem());
     }
+    
+    public void updateTable(){
+        fillTable();
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addStudentToListButton;
