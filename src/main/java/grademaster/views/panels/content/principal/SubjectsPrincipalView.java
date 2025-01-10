@@ -47,6 +47,8 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        subjectTeacherTable.setBackground(new java.awt.Color(255, 255, 255));
+        subjectTeacherTable.setForeground(new java.awt.Color(0, 0, 0));
         subjectTeacherTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -82,7 +84,9 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             subjectTeacherTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        assignTeacherButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        assignTeacherButton.setBackground(new java.awt.Color(0, 255, 255));
+        assignTeacherButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        assignTeacherButton.setForeground(new java.awt.Color(0, 0, 0));
         assignTeacherButton.setText("Assign Teacher");
         assignTeacherButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +94,9 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        deleteAssignmentButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        deleteAssignmentButton.setBackground(new java.awt.Color(0, 255, 255));
+        deleteAssignmentButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        deleteAssignmentButton.setForeground(new java.awt.Color(0, 0, 0));
         deleteAssignmentButton.setText("Delete Assignment");
         deleteAssignmentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +104,9 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        addSubjectButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        addSubjectButton.setBackground(new java.awt.Color(0, 255, 255));
+        addSubjectButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        addSubjectButton.setForeground(new java.awt.Color(0, 0, 0));
         addSubjectButton.setText("Add new Subject");
         addSubjectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +114,9 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        deleteSubjectButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        deleteSubjectButton.setBackground(new java.awt.Color(0, 255, 255));
+        deleteSubjectButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        deleteSubjectButton.setForeground(new java.awt.Color(0, 0, 0));
         deleteSubjectButton.setText("Delete subject");
         deleteSubjectButton.setEnabled(false);
         deleteSubjectButton.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +125,8 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             }
         });
 
+        subjectTable.setBackground(new java.awt.Color(255, 255, 255));
+        subjectTable.setForeground(new java.awt.Color(0, 0, 0));
         subjectTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -163,10 +175,10 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
                         .addComponent(deleteSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(addSubjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(deleteAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(assignTeacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(deleteAssignmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
