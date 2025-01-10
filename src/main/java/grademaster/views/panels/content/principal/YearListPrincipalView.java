@@ -240,7 +240,6 @@ public class YearListPrincipalView extends javax.swing.JPanel {
         editList.setVisible(true);
         editList.setLocationRelativeTo(null);
         editListButton.setEnabled(false);
-        fillTable();
     }//GEN-LAST:event_editListButtonActionPerformed
 
     private void yearStudyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStudyListActionPerformed
