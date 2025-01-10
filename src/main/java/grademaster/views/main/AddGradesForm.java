@@ -276,21 +276,24 @@ public class AddGradesForm extends javax.swing.JFrame {
             String period = (String) periodList.getSelectedItem();
             String test = (String) testList.getSelectedItem();        
             float grade = Float.parseFloat(gradeField.getText());
-
-            int value = GradeMaster.gradesController.createGrade(studentId,
+            
+            if (grade < 1 || grade > 20){
+                JOptionPane.showMessageDialog(null, "The school grade must be between values 1 and 20");
+            } else {
+                int value = GradeMaster.gradesController.createGrade(studentId,
                     StudyEnums.YearStudy.valueOf(yearStudy),
                     StudyEnums.Test.valueOf(test),
                     StudyEnums.Period.valueOf(period), 
                     grade, 
                     subject);
-
-            if(value == 1){
-                JOptionPane.showMessageDialog(null, "New grade register succesfully.");
-            } else if (value == 0){
-                JOptionPane.showMessageDialog(null, "Already exists a grade register with this form.");
-            } else if (value == -1){
-                JOptionPane.showMessageDialog(null, "ID field can't be empty");
-            }
+                if(value == 1){
+                    JOptionPane.showMessageDialog(null, "New grade register succesfully.");
+                } else if (value == 0){
+                    JOptionPane.showMessageDialog(null, "Already exists a grade register with this form.");
+                } else if (value == -1){
+                    JOptionPane.showMessageDialog(null, "ID field can't be empty");
+                }
+            }            
         } catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Grade field need to be a number");
         }
