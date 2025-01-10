@@ -50,9 +50,14 @@ public class YearListPrincipalView extends javax.swing.JPanel {
         addStudentToListButton = new javax.swing.JButton();
         editListButton = new javax.swing.JButton();
         deleteFromListButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        yearListTable.setBackground(new java.awt.Color(255, 255, 255));
+        yearListTable.setForeground(new java.awt.Color(0, 0, 0));
         yearListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -76,6 +81,7 @@ public class YearListPrincipalView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        yearListTable.setGridColor(new java.awt.Color(153, 153, 153));
         yearListTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 yearListTableMouseClicked(evt);
@@ -89,12 +95,16 @@ public class YearListPrincipalView extends javax.swing.JPanel {
             yearListTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        yearStudyList.setBackground(new java.awt.Color(255, 255, 255));
+        yearStudyList.setForeground(new java.awt.Color(0, 0, 0));
         yearStudyList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 yearStudyListActionPerformed(evt);
             }
         });
 
+        sectionList.setBackground(new java.awt.Color(255, 255, 255));
+        sectionList.setForeground(new java.awt.Color(0, 0, 0));
         sectionList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sectionListActionPerformed(evt);
@@ -109,7 +119,9 @@ public class YearListPrincipalView extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Section");
 
-        addStudentToListButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        addStudentToListButton.setBackground(new java.awt.Color(0, 255, 255));
+        addStudentToListButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        addStudentToListButton.setForeground(new java.awt.Color(0, 0, 0));
         addStudentToListButton.setText("Add student");
         addStudentToListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +129,9 @@ public class YearListPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        editListButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        editListButton.setBackground(new java.awt.Color(0, 255, 255));
+        editListButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        editListButton.setForeground(new java.awt.Color(0, 0, 0));
         editListButton.setText("Edit list");
         editListButton.setEnabled(false);
         editListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +140,9 @@ public class YearListPrincipalView extends javax.swing.JPanel {
             }
         });
 
-        deleteFromListButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        deleteFromListButton.setBackground(new java.awt.Color(0, 255, 255));
+        deleteFromListButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        deleteFromListButton.setForeground(new java.awt.Color(0, 0, 0));
         deleteFromListButton.setText("Delete");
         deleteFromListButton.setEnabled(false);
         deleteFromListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,37 +151,50 @@ public class YearListPrincipalView extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Year List");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addStudentToListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(yearStudyList, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1))
-                            .addGap(35, 35, 35)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(editListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(sectionList, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(deleteFromListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(293, 293, 293)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addStudentToListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(yearStudyList, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(editListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sectionList, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteFromListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(addStudentToListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(addStudentToListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -292,6 +321,7 @@ public class YearListPrincipalView extends javax.swing.JPanel {
     private javax.swing.JButton editListButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> sectionList;
     private javax.swing.JTable yearListTable;
