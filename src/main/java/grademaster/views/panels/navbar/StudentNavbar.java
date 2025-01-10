@@ -43,7 +43,7 @@ public class StudentNavbar extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(102, 0, 0));
+        setBackground(new java.awt.Color(0, 102, 204));
 
         signOutButton.setBackground(new java.awt.Color(255, 255, 255));
         signOutButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
