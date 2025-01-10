@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class SubjectsPrincipalView extends javax.swing.JPanel {
 
     String subjectSelected;
+    String idSelected;
     
     public SubjectsPrincipalView() {
         initComponents();
@@ -98,6 +99,7 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
         deleteAssignmentButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         deleteAssignmentButton.setForeground(new java.awt.Color(0, 0, 0));
         deleteAssignmentButton.setText("Delete Assignment");
+        deleteAssignmentButton.setEnabled(false);
         deleteAssignmentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteAssignmentButtonActionPerformed(evt);
@@ -208,7 +210,14 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteAssignmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAssignmentButtonActionPerformed
-        // TODO add your handling code here:
+        int value = JOptionPane.showConfirmDialog(null, "Are you sure to delete this assignment?");
+        
+        if (value == 0){
+            GradeMaster.teacherSubjectController.deleteTeacherSubject(idSelected);
+            JOptionPane.showMessageDialog(null, "Assignment deleted succesfully.");
+            fillTable();
+        }
+        deleteAssignmentButton.setEnabled(false);
     }//GEN-LAST:event_deleteAssignmentButtonActionPerformed
 
     private void assignTeacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignTeacherButtonActionPerformed
@@ -244,16 +253,21 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
         fillSubjectTable();
         }
         deleteSubjectButton.setEnabled(false);
+        deleteAssignmentButton.setEnabled(false);
     }//GEN-LAST:event_addSubjectButtonActionPerformed
 
     private void subjectTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjectTableMouseClicked
         int row = subjectTable.getSelectedRow();
         subjectSelected = (String) subjectTable.getValueAt(row, 0);
         deleteSubjectButton.setEnabled(true);
+        deleteAssignmentButton.setEnabled(false);
     }//GEN-LAST:event_subjectTableMouseClicked
 
     private void subjectTeacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjectTeacherTableMouseClicked
         deleteSubjectButton.setEnabled(false);
+        deleteAssignmentButton.setEnabled(true);
+        int row = subjectTeacherTable.getSelectedRow();
+        idSelected = (String) subjectTeacherTable.getValueAt(row, 0);
     }//GEN-LAST:event_subjectTeacherTableMouseClicked
 
     
