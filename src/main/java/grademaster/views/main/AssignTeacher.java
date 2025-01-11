@@ -7,6 +7,7 @@ package grademaster.views.main;
 import grademaster.GradeMaster;
 import grademaster.models.Subjects;
 import grademaster.models.TeacherSubject;
+import grademaster.views.panels.navbar.PrincipalNavbar;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -276,6 +277,9 @@ public class AssignTeacher extends javax.swing.JFrame {
             }
             fillTable();
         }
+        PrincipalNavbar.subjectsPrincipalView.updateTable();
+        subjectField.setText("");
+        idField.setText("");
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void subjectTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjectTableMouseClicked

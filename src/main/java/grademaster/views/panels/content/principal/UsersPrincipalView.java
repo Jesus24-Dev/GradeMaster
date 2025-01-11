@@ -338,6 +338,10 @@ public class UsersPrincipalView extends javax.swing.JPanel {
         }
         fillTable();
     }
+    
+    public void updateList(){
+        fillTable();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserButton;

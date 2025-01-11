@@ -7,6 +7,7 @@ package grademaster.views.main;
 import grademaster.GradeMaster;
 import grademaster.models.YearList;
 import grademaster.utils.StudyEnums;
+import grademaster.views.panels.navbar.PrincipalNavbar;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -252,7 +253,8 @@ public class ListForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Student added to list succesfully!");
             fillTable();
             idField.setText("");
-        }        
+        }      
+        PrincipalNavbar.yearListPrincipalView.updateTable();
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void fillComboBoxEnums(){

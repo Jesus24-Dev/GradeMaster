@@ -112,7 +112,7 @@ public class TeacherSubjectRepository {
                      SELECT users.id, users.name, users.lastname
                      FROM users
                      LEFT JOIN teacher_subject ON teacher_subject.teacherid = users.id
-                     WHERE teacher_subject.teacherid IS NULL AND users.rol = (SELECT id FROM rol WHERE rol_desc = 'TEACHER')
+                     WHERE teacher_subject.teacherid IS NULL AND users.rol = (SELECT id FROM rol WHERE rol_desc = 'TEACHER') AND users.status = true
                      """;
         
         try(PreparedStatement pstm = conn.prepareStatement(sql)){

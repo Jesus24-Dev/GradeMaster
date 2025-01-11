@@ -19,6 +19,9 @@ public class PrincipalNavbar extends javax.swing.JPanel {
 
     
     public static YearListPrincipalView yearListPrincipalView;
+    public static UsersPrincipalView usersPrincipalView;
+    public static gradesTeacherView grades_teacher_view;
+    public static SubjectsPrincipalView subjectsPrincipalView;
             
     public PrincipalNavbar() {
         initComponents();
@@ -126,12 +129,12 @@ public class PrincipalNavbar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usersPrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersPrincipalButtonActionPerformed
-        UsersPrincipalView usersPrincipalView = new UsersPrincipalView();
+        usersPrincipalView = new UsersPrincipalView();
         WindowFunctions.changeContent(usersPrincipalView);
     }//GEN-LAST:event_usersPrincipalButtonActionPerformed
 
     private void gradePrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradePrincipalButtonActionPerformed
-        gradesTeacherView grades_teacher_view = new gradesTeacherView();
+        grades_teacher_view = new gradesTeacherView();
         WindowFunctions.changeContent(grades_teacher_view);
     }//GEN-LAST:event_gradePrincipalButtonActionPerformed
 
@@ -141,7 +144,7 @@ public class PrincipalNavbar extends javax.swing.JPanel {
     }//GEN-LAST:event_listPrincipalButtonActionPerformed
 
     private void subjectsPrincipalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectsPrincipalButtonActionPerformed
-        SubjectsPrincipalView subjectsPrincipalView = new SubjectsPrincipalView();
+        subjectsPrincipalView = new SubjectsPrincipalView();
         WindowFunctions.changeContent(subjectsPrincipalView);
     }//GEN-LAST:event_subjectsPrincipalButtonActionPerformed
 

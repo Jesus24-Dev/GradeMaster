@@ -9,6 +9,8 @@ import grademaster.models.Subjects;
 import grademaster.models.TeacherSubject;
 import grademaster.models.YearList;
 import grademaster.utils.StudyEnums;
+import grademaster.views.panels.navbar.PrincipalNavbar;
+import grademaster.views.panels.navbar.TeacherNavbar;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -339,6 +341,12 @@ public class AddGradesForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Grade field need to be a number");
         }
         
+        if(GradeMaster.user.getRole() == 1){
+            PrincipalNavbar.grades_teacher_view.updateTable();
+        } else {
+            TeacherNavbar.grades_teacher_view.updateTable();
+        }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void studentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentListMouseClicked

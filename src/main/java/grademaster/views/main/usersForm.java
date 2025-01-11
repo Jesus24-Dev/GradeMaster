@@ -5,6 +5,7 @@
 package grademaster.views.main;
 
 import grademaster.GradeMaster;
+import grademaster.views.panels.navbar.PrincipalNavbar;
 import java.sql.Date;
 import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
@@ -329,6 +330,7 @@ public class usersForm extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         registerUser();
+        PrincipalNavbar.usersPrincipalView.updateList();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     

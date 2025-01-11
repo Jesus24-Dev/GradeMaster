@@ -275,7 +275,7 @@ public class gradesTeacherView extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "The school grade must be between values 1 and 20");
         }
         
-        
+        fillTable();
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void subjectListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectListActionPerformed
@@ -422,6 +422,10 @@ public class gradesTeacherView extends javax.swing.JPanel {
     
     private void currentSubject(){
         subjectName = (String) subjectList.getSelectedItem();
+    }
+    
+    public void updateTable(){
+        fillTable();
     }
     
 

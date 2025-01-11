@@ -15,9 +15,8 @@ import javax.swing.JPanel;
  */
 public class TeacherNavbar extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TeacherNavbar
-     */
+    public static gradesTeacherView grades_teacher_view;
+    
     public TeacherNavbar() {
         initComponents();
     }
@@ -102,7 +101,7 @@ public class TeacherNavbar extends javax.swing.JPanel {
     }//GEN-LAST:event_listTeacherButtonActionPerformed
 
     private void gradeTeacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeTeacherButtonActionPerformed
-        gradesTeacherView grades_teacher_view = new gradesTeacherView();
+        grades_teacher_view = new gradesTeacherView();
         WindowFunctions.changeContent(grades_teacher_view);
     }//GEN-LAST:event_gradeTeacherButtonActionPerformed
 

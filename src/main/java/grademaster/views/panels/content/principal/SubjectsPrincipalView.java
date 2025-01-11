@@ -305,6 +305,10 @@ public class SubjectsPrincipalView extends javax.swing.JPanel {
             }
         }
     }
+    
+    public void updateTable(){
+        fillTable();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addSubjectButton;
