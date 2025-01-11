@@ -75,4 +75,8 @@ public class GradesController {
     public ArrayList<Grades> getGradesPrincipal(YearStudy yearStudy, SectionStudy sectionStudy){
         return gradesService.getGradesPrincipal(yearStudy, sectionStudy);
     }
+    
+    public ArrayList<Grades> getGradesStudent(String id){
+        return gradesService.getGradesStudent(id);
+    }
 }

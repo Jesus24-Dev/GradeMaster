@@ -330,5 +330,40 @@ public class GradesRepository {
             return null;
         }
     }
-    
+    public ArrayList<Grades> getGradesStudent(Connection conn, String id){
+        ArrayList<Grades> grades = new ArrayList<>();
+        String query = """
+                       SELECT a.id, a.name, a.lastname, b.namesubject, c.yearstudy, d.section, c.activity, c.periodtest, c.grade
+                       FROM grades c
+                       INNER JOIN  users a on c.studentid = a.id
+                       INNER JOIN subject b on b.id = c.subjectid
+                       INNER JOIN yearlist d on d.studentid = a.id
+                       WHERE a.id = ?
+                       """;
+        try(PreparedStatement pstm = conn.prepareStatement(query)){
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+                if(rs.next()){
+                    do {
+                    Grades grade = new Grades(
+                            rs.getString("id"),
+                            rs.getString("name"),
+                            rs.getString("lastname"),
+                            rs.getString("namesubject"),
+                            SectionStudy.valueOf(rs.getString("section")),
+                            YearStudy.valueOf(rs.getString("yearstudy")),
+                            Test.valueOf(rs.getString("activity")),
+                            Period.valueOf(rs.getString("periodtest")),
+                            rs.getFloat("grade")
+                    ); 
+                    grades.add(grade);
+                } while(rs.next());
+            }
+            rs.close();   
+            return grades;
+        } catch (SQLException e){
+            System.out.println(e);
+            return null;
+        }
+    }
 }
